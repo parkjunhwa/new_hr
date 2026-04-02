@@ -27,6 +27,20 @@ function getStagedHtmlFiles() {
   }
 }
 
+function listAllTrackedHtmlFiles() {
+  try {
+    const out = execSync('git ls-files "html/*.html"', { encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] }).trim();
+    if (!out) return [];
+    return out
+      .split('\n')
+      .map((s) => s.trim())
+      .filter(Boolean)
+      .filter((p) => p.startsWith('html/') && p.endsWith('.html'));
+  } catch {
+    return [];
+  }
+}
+
 function contentType(filePath) {
   const ext = path.extname(filePath).toLowerCase();
   if (ext === '.html') return 'text/html; charset=utf-8';
@@ -101,16 +115,17 @@ function openUrl(url) {
 }
 
 async function main() {
-  const staged = getStagedHtmlFiles();
-  if (staged.length === 0) {
-    log('[figma-sync] No staged html/*.html changes. Skipping.');
+  const args = new Set(process.argv.slice(2));
+  const files = args.has('--all') ? listAllTrackedHtmlFiles() : getStagedHtmlFiles();
+  if (files.length === 0) {
+    log(args.has('--all') ? '[figma-sync] No tracked html/*.html files. Skipping.' : '[figma-sync] No staged html/*.html changes. Skipping.');
     return;
   }
 
   const { server, port } = await startStaticServer();
-  const urls = staged.map((p) => `http://127.0.0.1:${port}/${p.replace(/^html\//, '')}`);
+  const urls = files.map((p) => `http://127.0.0.1:${port}/${p.replace(/^html\//, '')}`);
 
-  log('[figma-sync] Opening staged HTML pages for Figma capture…');
+  log(args.has('--all') ? '[figma-sync] Opening ALL HTML pages for Figma capture…' : '[figma-sync] Opening staged HTML pages for Figma capture…');
   log('[figma-sync] Keep the browser tabs open until capture finishes.');
   log('[figma-sync] Pages:');
   for (const u of urls) log(`  - ${u}`);

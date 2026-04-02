@@ -1,0 +1,46 @@
+name: UI screenshots (HTML)
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "html/**/*.html"
+      - "html/css/**"
+      - "html/js/**"
+      - "html/assets/**"
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  screenshots:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install deps
+        run: npm ci
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium
+
+      - name: Generate screenshots
+        run: npm run ci:screenshots
+
+      - name: Upload screenshots artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ui-screenshots
+          path: artifacts/screenshots
+          if-no-files-found: error
+
