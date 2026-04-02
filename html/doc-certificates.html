@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>각종 증명서 - 웅진프리드라이프</title>
+    <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="lib/datepicker/css/datepicker-bs5.min.css" rel="stylesheet">
+    <script src="lib/lucide/lucide.min.js"></script>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/datepicker-style.css">
+</head>
+
+<body class="dashboard-page">
+    <a href="#main-content" class="skip-link">본문 바로가기</a>
+    <div class="mobile-overlay" id="mobileOverlay" aria-hidden="true"></div>
+    <div id="sidebarMount"></div>
+
+    <div class="main-content">
+        <div id="headerMount"></div>
+
+        <main id="main-content" class="content-area doc-oath-page" role="main" aria-label="각종 증명서 본문">
+            <div class="container-fluid p-3 p-md-3 p-lg-4 d-flex flex-column min-h-0">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb mb-0">
+                        <li class="breadcrumb-item"><a href="dashboard.html"><i data-lucide="home" class="align-text-bottom" style="width: 1rem; height: 1rem;" aria-hidden="true"></i>홈</a></li>
+                        <li class="breadcrumb-item">문서관리</li>
+                        <li class="breadcrumb-item active" aria-current="page">각종 증명서</li>
+                    </ol>
+                </nav>
+
+                <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-2">
+                    <h1 class="h4 mb-0">각종 증명서</h1>
+                </div>
+
+                <!-- 조회조건 카드 -->
+                <div class="card query-condition-card mb-3">
+                    <div class="card-body p-3">
+                        <div class="query-condition-form">
+                            <div class="query-condition-group">
+                                <label for="certDocType" class="form-label">문서종류</label>
+                                <select class="form-select" id="certDocType" style="min-width: 180px;">
+                                    <option value="">전체</option>
+                                    <option value="employment">재직증명서</option>
+                                    <option value="career">경력증명서</option>
+                                    <option value="income">소득증명서</option>
+                                    <option value="etc">기타</option>
+                                </select>
+                            </div>
+                            <div class="query-condition-group">
+                                <label for="certDateFrom" class="form-label">신청일자</label>
+                                <div class="d-flex align-items-center flex-nowrap gap-1">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="certDateFrom" value="2026.01.01" placeholder="YYYY.MM.DD" readonly style="max-width: 120px;" aria-label="신청일자 시작" autocomplete="off">
+                                        <span class="input-group-text bg-white" id="certDateFromIcon" role="button" tabindex="0" aria-label="시작일 선택" title="날짜 선택"><i data-lucide="calendar" class="text-muted" style="width: 1rem; height: 1rem;"></i></span>
+                                    </div>
+                                    <span class="text-muted" aria-hidden="true">~</span>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="certDateTo" value="2026.12.31" placeholder="YYYY.MM.DD" readonly style="max-width: 120px;" aria-label="신청일자 종료" autocomplete="off">
+                                        <span class="input-group-text bg-white" id="certDateToIcon" role="button" tabindex="0" aria-label="종료일 선택" title="날짜 선택"><i data-lucide="calendar" class="text-muted" style="width: 1rem; height: 1rem;"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex gap-2 ms-auto">
+                                <button type="button" class="btn btn-primary d-flex align-items-center gap-1" id="btnCertSearch" aria-label="검색">
+                                    <i data-lucide="search" style="width: 1rem; height: 1rem;"></i>
+                                    검색
+                                </button>
+                                <button type="button" class="btn btn-outline-secondary d-flex align-items-center gap-1" id="btnCertInput" data-bs-toggle="modal" data-bs-target="#certApplyModal" aria-label="입력">
+                                    <i data-lucide="pencil" style="width: 1rem; height: 1rem;"></i>
+                                    입력
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 테이블 그리드 카드 -->
+                <div class="card table-grid-card flex-grow-1 min-h-0 d-flex flex-column">
+                    <div class="card-body table-grid-card-body">
+                        <div class="table-grid-scroll">
+                            <table class="table table-hover align-middle mb-0 table-grid-table">
+                                <colgroup>
+                                    <col style="width: 90px;">   <!-- 발급번호 -->
+                                    <col>  <!-- 문서종류 -->
+                                    <col style="width: 100px;">  <!-- 발급용도 -->
+                                    <col style="width: 100px;">  <!-- 제출처 -->
+                                    <col style="width: 70px;">   <!-- 출력여부 -->
+                                    <col style="width: 80px;">   <!-- 기준년도 -->
+                                    <col>                         <!-- 비고 (가변) -->
+                                    <col style="width: 80px;">   <!-- 기능 -->
+                                </colgroup>
+                                <thead>
+                                    <tr>
+                                        <th scope="col" class="text-center">발급번호</th>
+                                        <th scope="col" class="text-center">문서종류</th>
+                                        <th scope="col" class="text-center">발급용도</th>
+                                        <th scope="col" class="text-center">제출처</th>
+                                        <th scope="col" class="text-center">출력여부</th>
+                                        <th scope="col" class="text-center">기준년도</th>
+                                        <th scope="col" class="text-center">비고</th>
+                                        <th scope="col" class="text-center">기능</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="text-center">2026-0002</td>
+                                        <td class="text-center">재직증명서</td>
+                                        <td class="text-center">금융기관용</td>
+                                        <td class="text-center">하나은행</td>
+                                        <td class="text-center">Y</td>
+                                        <td class="text-center">2026</td>
+                                        <td class="text-center">&nbsp;</td>
+                                        <td class="text-center">
+                                            <a href="#" class="btn btn-outline-secondary btn-sm" target="_blank" rel="noopener noreferrer" aria-label="새 창에서 출력">출력</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">2026-0001</td>
+                                        <td class="text-center">경력증명서</td>
+                                        <td class="text-center">&nbsp;</td>
+                                        <td class="text-center">&nbsp;</td>
+                                        <td class="text-center">Y</td>
+                                        <td class="text-center">2025</td>
+                                        <td class="text-center">금융기관 제출용</td>
+                                        <td class="text-center">
+                                            <a href="#" class="btn btn-outline-secondary btn-sm" target="_blank" rel="noopener noreferrer" aria-label="새 창에서 출력">출력</a>
+                                        </td>
+                                    </tr>
+                                    <!-- 데이터가 없을 경우 d-none을 뺀다. 8은 컬럼 수 -->
+                                    <tr class="empty-state-row d-none">
+                                        <td colspan="8">
+                                            <div class="empty-state-block">
+                                                <span class="empty-state-icon"><i data-lucide="inbox" aria-hidden="true"></i></span>
+                                                <span class="empty-state-text">데이터가 없습니다</span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- 증명서신청 모달 (입력 버튼 클릭 시) -->
+    <div class="modal fade" id="certApplyModal" tabindex="-1" aria-labelledby="certApplyModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="certApplyModalLabel">증명서신청</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="닫기"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="d-flex flex-column gap-3 cert-apply-form">
+                        <div class="query-condition-group">
+                            <label for="certApplyDocType" class="form-label">문서종류</label>
+                            <select class="form-select" id="certApplyDocType" style="min-width: 160px;" aria-label="문서종류">
+                                <option value="">선택</option>
+                                <option value="employment">재직증명서</option>
+                                <option value="career">경력증명서</option>
+                                <option value="income">소득증명서</option>
+                                <option value="etc">기타</option>
+                            </select>
+                        </div>
+                        <div class="query-condition-group">
+                            <label for="certApplyPurpose" class="form-label">발급용도</label>
+                            <select class="form-select" id="certApplyPurpose" style="min-width: 160px;" aria-label="발급용도">
+                                <option value="">선택</option>
+                                <option value="finance">금융기관용</option>
+                                <option value="public">공공기관용</option>
+                                <option value="etc">기타</option>
+                            </select>
+                        </div>
+                        <div class="query-condition-group">
+                            <label for="certApplyYear" class="form-label">기준년도</label>
+                            <div class="input-group" style="max-width: 140px;">
+                                <input type="text" class="form-control" id="certApplyYear" value="2025" placeholder="YYYY" readonly aria-label="기준년도" autocomplete="off">
+                                <span class="input-group-text bg-white" id="certApplyYearIcon" role="button" tabindex="0" aria-label="기준년도 선택" title="년도 선택"><i data-lucide="calendar" class="text-muted" style="width: 1rem; height: 1rem;"></i></span>
+                            </div>
+                        </div>
+                        <div class="query-condition-group">
+                            <label for="certApplyRecipient" class="form-label">제출처</label>
+                            <input type="text" class="form-control" id="certApplyRecipient" placeholder="제출처 입력" aria-label="제출처" style="min-width: 0;">
+                        </div>
+                        <div class="query-condition-group">
+                            <label for="certApplyRemarks" class="form-label">비고</label>
+                            <input type="text" class="form-control" id="certApplyRemarks" placeholder="비고 입력" aria-label="비고" style="min-width: 0;">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="certApplySubmit">신청</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/datepicker/js/datepicker.min.js"></script>
+    <script src="js/layout-templates.js"></script>
+    <script src="js/nav-config.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        lucide.createIcons();
+
+        (function() {
+            var certDateFrom = document.getElementById('certDateFrom');
+            var certDateTo = document.getElementById('certDateTo');
+            var certDateFromIcon = document.getElementById('certDateFromIcon');
+            var certDateToIcon = document.getElementById('certDateToIcon');
+
+            if (typeof Datepicker !== 'undefined') {
+                if (!Datepicker.locales.ko) {
+                    Datepicker.locales.ko = {
+                        days: ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'],
+                        daysShort: ['일', '월', '화', '수', '목', '금', '토'],
+                        daysMin: ['일', '월', '화', '수', '목', '금', '토'],
+                        months: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+                        monthsShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+                        today: '오늘',
+                        clear: '지우기',
+                        weekStart: 0,
+                        format: 'yyyy-mm-dd',
+                        titleFormat: 'yyyy년 M'
+                    };
+                }
+                var formatCert = 'yyyy.mm.dd';
+                if (certDateFrom) {
+                    var pickerFrom = new Datepicker(certDateFrom, { format: formatCert, autohide: true, language: 'ko' });
+                    if (certDateFromIcon) {
+                        certDateFromIcon.addEventListener('click', function() { pickerFrom.show(); });
+                        certDateFromIcon.addEventListener('keydown', function(e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pickerFrom.show(); } });
+                    }
+                }
+                if (certDateTo) {
+                    var pickerTo = new Datepicker(certDateTo, { format: formatCert, autohide: true, language: 'ko' });
+                    if (certDateToIcon) {
+                        certDateToIcon.addEventListener('click', function() { pickerTo.show(); });
+                        certDateToIcon.addEventListener('keydown', function(e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pickerTo.show(); } });
+                    }
+                }
+            }
+
+            var certApplyModal = document.getElementById('certApplyModal');
+            var certApplyYear = document.getElementById('certApplyYear');
+            var certApplyYearIcon = document.getElementById('certApplyYearIcon');
+            var certApplySubmit = document.getElementById('certApplySubmit');
+            if (certApplyModal && certApplyYear && typeof Datepicker !== 'undefined') {
+                var certApplyYearPicker = new Datepicker(certApplyYear, {
+                    format: 'yyyy',
+                    pickLevel: 2,
+                    autohide: true,
+                    language: 'ko'
+                });
+                if (certApplyYearIcon) {
+                    certApplyYearIcon.addEventListener('click', function() { certApplyYearPicker.show(); });
+                    certApplyYearIcon.addEventListener('keydown', function(e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); certApplyYearPicker.show(); } });
+                }
+                certApplyModal.addEventListener('hidden.bs.modal', function() {
+                    document.getElementById('certApplyDocType').value = '';
+                    document.getElementById('certApplyPurpose').value = '';
+                    certApplyYear.value = '2025';
+                    var r = document.getElementById('certApplyRecipient'); if (r) r.value = '';
+                    var rm = document.getElementById('certApplyRemarks'); if (rm) rm.value = '';
+                });
+                if (certApplySubmit) {
+                    certApplySubmit.addEventListener('click', function() {
+                        var docType = document.getElementById('certApplyDocType').value;
+                        if (!docType) {
+                            alert('문서종류를 선택해주세요.');
+                            return;
+                        }
+                        if (typeof bootstrap !== 'undefined' && bootstrap.Modal) {
+                            var modal = bootstrap.Modal.getInstance(certApplyModal);
+                            if (modal) modal.hide();
+                        }
+                    });
+                }
+            }
+        })();
+    </script>
+    <script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+</body>
+
+</html>

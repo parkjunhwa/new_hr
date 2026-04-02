@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>내 급여조회 - 웅진프리드라이프</title>
+    <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="lib/datepicker/css/datepicker-bs5.min.css" rel="stylesheet">
+    <script src="lib/lucide/lucide.min.js"></script>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/datepicker-style.css">
+</head>
+
+<body class="dashboard-page">
+    <a href="#main-content" class="skip-link">본문 바로가기</a>
+    <div class="mobile-overlay" id="mobileOverlay" aria-hidden="true"></div>
+    <div id="sidebarMount"></div>
+
+    <div class="main-content">
+        <div id="headerMount"></div>
+
+        <main id="main-content" class="content-area payroll-page" aria-label="내 급여조회 본문">
+            <div class="container-fluid p-3 p-md-3 p-lg-4 d-flex flex-column min-h-0">
+                <nav aria-label="현재 위치">
+                    <ol class="breadcrumb mb-0">
+                        <li class="breadcrumb-item">
+                            <a href="dashboard.html">
+                                <i data-lucide="home" class="align-text-bottom icon-16" aria-hidden="true"></i>홈
+                            </a>
+                        </li>
+                        <li class="breadcrumb-item">급여관리</li>
+                        <li class="breadcrumb-item active" aria-current="page">내 급여조회</li>
+                    </ol>
+                </nav>
+
+                <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-2">
+                    <h1 class="h4 mb-0">내 급여조회</h1>
+                </div>
+
+                <section class="card query-condition-card mb-3" aria-labelledby="payrollQueryHeading">
+                    <h2 id="payrollQueryHeading" class="visually-hidden">조회 조건</h2>
+                    <div class="card-body p-3">
+                        <div class="query-condition-form">
+                            <div class="query-condition-group">
+                                <label for="payrollMonth" class="form-label">조회년월</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="payrollMonth" value="2026.03" readonly
+                                        autocomplete="off" inputmode="none">
+                                    <span class="input-group-text bg-white" id="payrollMonthIcon" role="button" tabindex="0"
+                                        aria-label="조회년월 달력 열기">
+                                        <i data-lucide="calendar" class="text-muted icon-16" aria-hidden="true"></i>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="query-condition-group">
+                                <label for="payrollType" class="form-label">급여구분</label>
+                                <select id="payrollType" class="form-select">
+                                    <option selected>정기급여/비정기상여금</option>
+                                    <option>정기급여</option>
+                                    <option>비정기상여금</option>
+                                </select>
+                            </div>
+
+                            <button type="button" class="btn btn-primary d-flex align-items-center gap-1 ms-auto">
+                                <i data-lucide="search" class="icon-16" aria-hidden="true"></i>
+                                검색
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="card payroll-info-card mb-3" aria-label="급여 기본정보">
+                    <div class="card-body p-0">
+                        <button type="button" class="payroll-info-toggle" id="payrollInfoToggle"
+                            aria-expanded="true" aria-controls="payrollInfoGrid" aria-label="급여 기본정보 접기">
+                            <div class="payroll-info-grid" id="payrollInfoGrid">
+                                <div class="payroll-info-item">
+                                    <div class="payroll-info-label">사번</div>
+                                    <div class="payroll-info-value">77100333</div>
+                                </div>
+                                <div class="payroll-info-item">
+                                    <div class="payroll-info-label">성명</div>
+                                    <div class="payroll-info-value">홍길동</div>
+                                </div>
+                                <div class="payroll-info-item payroll-info-item-right">
+                                    <div class="payroll-info-label">이체계좌</div>
+                                    <div class="payroll-info-value">3333-1234134-1341</div>
+                                </div>
+
+                                <div class="payroll-info-item">
+                                    <div class="payroll-info-label">부서</div>
+                                    <div class="payroll-info-value">디지털플랫폼팀</div>
+                                </div>
+                                <div class="payroll-info-item">
+                                    <div class="payroll-info-label">직책/직위</div>
+                                    <div class="payroll-info-value">책임매니저 / 팀원</div>
+                                </div>
+                                <div class="payroll-info-item payroll-info-item-right">
+                                    <div class="payroll-info-label">은행</div>
+                                    <div class="payroll-info-value">카카오뱅크</div>
+                                </div>
+
+                                <div class="payroll-info-item">
+                                    <div class="payroll-info-label">퇴직추계액</div>
+                                    <div class="payroll-info-value">1,200,111원</div>
+                                </div>
+                                <div class="payroll-info-item">
+                                    <div class="payroll-info-label">급여지급일</div>
+                                    <div class="payroll-info-value">2026.01.23</div>
+                                </div>
+                                <div class="payroll-info-item payroll-info-item-right">
+                                    <div class="payroll-info-label">예금주</div>
+                                    <div class="payroll-info-value">홍길동</div>
+                                </div>
+                            </div>
+                            <span class="payroll-info-caret" aria-hidden="true">
+                                <i data-lucide="chevron-up" class="icon-16"></i>
+                            </span>
+                        </button>
+                    </div>
+                </section>
+
+                <section class="card payroll-total-card mb-3" aria-labelledby="payrollTotalPeriodTitle">
+                    <div class="card-body p-3">
+                        <h2 class="payroll-total-title h6 text-center mb-3" id="payrollTotalPeriodTitle">2026년 03월 급여내역</h2>
+                        <div class="payroll-total-grid" role="group" aria-labelledby="payrollTotalPeriodTitle">
+                            <div class="payroll-total-item">
+                                <label class="payroll-total-label" for="payrollTotalGross">총지급액</label>
+                                <div class="input-group payroll-total-input">
+                                    <input type="text" class="form-control text-end" id="payrollTotalGross" value="3,000,000" readonly>
+                                    <span class="input-group-text" aria-hidden="true">원</span>
+                                </div>
+                            </div>
+                            <div class="payroll-total-item">
+                                <label class="payroll-total-label" for="payrollTotalDeduct">공제금액</label>
+                                <div class="input-group payroll-total-input">
+                                    <input type="text" class="form-control text-end" id="payrollTotalDeduct" value="500,000" readonly>
+                                    <span class="input-group-text" aria-hidden="true">원</span>
+                                </div>
+                            </div>
+                            <div class="payroll-total-item payroll-total-item-strong">
+                                <label class="payroll-total-label" for="payrollTotalNet">실지급액</label>
+                                <div class="input-group payroll-total-input payroll-total-input-strong">
+                                    <input type="text" class="form-control text-end" id="payrollTotalNet" value="2,500,000" readonly>
+                                    <span class="input-group-text" aria-hidden="true">원</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="card payroll-detail-card flex-grow-1 min-h-0">
+                    <div class="card-body p-0 d-flex flex-column min-h-0">
+                        <button type="button" class="payroll-detail-toggle" id="payrollDetailToggle"
+                            aria-expanded="true" aria-controls="payrollDetailCollapsible" aria-label="급여세부내역 접기">
+                            <div class="payroll-detail-toggle-main">
+                                <span class="h6 mb-0" id="payrollDetailSectionTitle">급여세부내역</span>
+                            </div>
+                            <span class="payroll-info-caret" aria-hidden="true">
+                                <i data-lucide="chevron-up" class="icon-16"></i>
+                            </span>
+                        </button>
+
+                        <div id="payrollDetailCollapsible"
+                            class="payroll-detail-collapsible d-flex flex-column flex-grow-1 min-h-0"
+                            role="region"
+                            aria-labelledby="payrollDetailSectionTitle">
+                        <div class="payroll-detail-content payroll-detail-table-body flex-grow-1 min-h-0">
+                            <div class="payroll-detail-unit-row">
+                                <span class="payroll-detail-unit" id="payrollDetailUnitNote">단위 : 원</span>
+                            </div>
+                            <div class="table-grid-scroll payroll-detail-table-scroll">
+                                <table
+                                    class="table table-hover align-middle mb-0 table-grid-table payroll-detail-breakdown-table"
+                                    aria-describedby="payrollDetailUnitNote">
+                                    <caption class="visually-hidden">지급내역 및 공제내역</caption>
+                                    <colgroup>
+                                        <col style="width:25%;">
+                                        <col style="width:25%;">
+                                        <col style="width:25%;">
+                                        <col style="width:25%;">
+                                    </colgroup>
+                                    <thead>
+                                        <tr>
+                                            <th scope="colgroup" colspan="2" class="text-center">지급내역</th>
+                                            <th scope="colgroup" colspan="2" class="text-center">공제내역</th>
+                                        </tr>
+                                        <tr>
+                                            <th scope="col" class="text-center">항목</th>
+                                            <th scope="col" class="text-center">금액</th>
+                                            <th scope="col" class="text-center">항목</th>
+                                            <th scope="col" class="text-center">금액</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="text-start">기본급</td>
+                                            <td class="text-end">2,400,000</td>
+                                            <td class="text-start">소득세</td>
+                                            <td class="text-end">230,000</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-start">고정시간외수당</td>
+                                            <td class="text-end">400,000</td>
+                                            <td class="text-start">지방소득세</td>
+                                            <td class="text-end">23,000</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-start">중식보조비</td>
+                                            <td class="text-end">200,000</td>
+                                            <td class="text-start">건강보험</td>
+                                            <td class="text-end">120,000</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-start">&nbsp;</td>
+                                            <td class="text-end">&nbsp;</td>
+                                            <td class="text-start">장기요양</td>
+                                            <td class="text-end">20,000</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-start">&nbsp;</td>
+                                            <td class="text-end">&nbsp;</td>
+                                            <td class="text-start">국민연금</td>
+                                            <td class="text-end">120,000</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-start">&nbsp;</td>
+                                            <td class="text-end">&nbsp;</td>
+                                            <td class="text-start">고용보험</td>
+                                            <td class="text-end">23,000</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-start">&nbsp;</td>
+                                            <td class="text-end">&nbsp;</td>
+                                            <td class="text-start">동호회비</td>
+                                            <td class="text-end">5,000</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="payroll-detail-actions">
+                            <button type="button" class="btn btn-sm btn-outline-secondary payroll-calc-btn"
+                                data-bs-toggle="modal" data-bs-target="#payrollCalcModal"
+                                aria-haspopup="dialog"
+                                aria-controls="payrollCalcModal">
+                                <i data-lucide="search" class="icon-16" aria-hidden="true"></i>
+                                산출내역보기
+                            </button>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div class="modal fade" id="payrollCalcModal" tabindex="-1" aria-labelledby="payrollCalcModalLabel"
+        aria-describedby="payrollCalcModalBody" aria-modal="true" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content payroll-calc-modal">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="payrollCalcModalLabel">산출내역</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="모달 닫기"></button>
+                </div>
+                <div class="modal-body" id="payrollCalcModalBody">
+                    <table class="table payroll-calc-table align-middle mb-0" aria-label="산출내역 테이블">
+                        <colgroup>
+                            <col class="payroll-calc-col-type">
+                            <col>
+                            <col class="payroll-calc-col-amt">
+                        </colgroup>
+                        <thead>
+                            <tr>
+                                <th scope="col" class="text-center">구분</th>
+                                <th scope="col" class="text-center">산출식 / 산출방법</th>
+                                <th scope="col" class="text-center">지급액</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>고정시간외수당</td>
+                                <td class="text-center">통상시급 * 월 22시간 * 1.5</td>
+                                <td class="text-end">400,000</td>
+                            </tr>
+                            <tr>
+                                <td>건강보험</td>
+                                <td class="text-center">보수월액 * (3.595)%</td>
+                                <td class="text-end">120,000</td>
+                            </tr>
+                            <tr>
+                                <td>국민연금</td>
+                                <td class="text-center">보수월액 * (4.750)%</td>
+                                <td class="text-end">120,000</td>
+                            </tr>
+                            <tr>
+                                <td>고용보험</td>
+                                <td class="text-center">과세대상임금 * (0.900)%</td>
+                                <td class="text-end">23,000</td>
+                            </tr>
+                            <tr>
+                                <td>장기요양보험</td>
+                                <td class="text-center">건강보험 * (13.140)%</td>
+                                <td class="text-end">20,000</td>
+                            </tr>
+                            <tr>
+                                <td>소득세</td>
+                                <td class="text-center">근로소득세 세율</td>
+                                <td class="text-end">230,000</td>
+                            </tr>
+                            <tr>
+                                <td>지방소득세</td>
+                                <td class="text-center">근로소득세의 10%</td>
+                                <td class="text-end">23,000</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                        aria-label="닫기">닫기</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/datepicker/js/datepicker.min.js"></script>
+    <script src="js/layout-templates.js"></script>
+    <script src="js/nav-config.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        lucide.createIcons();
+
+        (function () {
+            var monthInput = document.getElementById('payrollMonth');
+            var monthIcon = document.getElementById('payrollMonthIcon');
+            if (typeof Datepicker !== 'undefined' && monthInput) {
+                if (!Datepicker.locales.ko) {
+                    Datepicker.locales.ko = {
+                        days: ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'],
+                        daysShort: ['일', '월', '화', '수', '목', '금', '토'],
+                        daysMin: ['일', '월', '화', '수', '목', '금', '토'],
+                        months: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+                        monthsShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+                        today: '오늘',
+                        clear: '지우기',
+                        weekStart: 0,
+                        format: 'yyyy-mm-dd',
+                        titleFormat: 'yyyy년 M'
+                    };
+                }
+
+                var picker = new Datepicker(monthInput, {
+                    format: 'yyyy.mm',
+                    pickLevel: 1,
+                    autohide: true,
+                    language: 'ko'
+                });
+
+                function openPicker() { picker.show(); }
+                if (monthIcon) {
+                    monthIcon.addEventListener('click', openPicker);
+                    monthIcon.addEventListener('keydown', function (e) {
+                        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openPicker(); }
+                    });
+                }
+            }
+        })();
+
+        (function () {
+            var toggle = document.getElementById('payrollInfoToggle');
+            if (!toggle) return;
+            function syncAria() {
+                var collapsed = toggle.classList.contains('is-collapsed');
+                toggle.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
+                toggle.setAttribute('aria-label', collapsed ? '급여 기본정보 펼치기' : '급여 기본정보 접기');
+            }
+            toggle.addEventListener('click', function () {
+                toggle.classList.toggle('is-collapsed');
+                syncAria();
+            });
+        })();
+
+        (function () {
+            var detailToggle = document.getElementById('payrollDetailToggle');
+            var detailCard = detailToggle && detailToggle.closest('.payroll-detail-card');
+            if (!detailToggle || !detailCard) return;
+            function syncDetailAria() {
+                var collapsed = detailToggle.classList.contains('is-collapsed');
+                detailToggle.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
+                detailToggle.setAttribute('aria-label', collapsed ? '급여세부내역 펼치기' : '급여세부내역 접기');
+                detailCard.classList.toggle('payroll-detail-collapsed', collapsed);
+            }
+            detailToggle.addEventListener('click', function () {
+                detailToggle.classList.toggle('is-collapsed');
+                syncDetailAria();
+            });
+        })();
+    </script>
+    <script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+</body>
+
+</html>
+

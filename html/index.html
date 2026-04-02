@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로그인 - 주식회사 웅진</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="lib/lucide/lucide.min.js"></script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="login-page">
+    <div class="login-container">
+        <!-- Background Image -->
+        <div class="login-background" style="background-image: url('https://images.unsplash.com/photo-1764690690771-b4522d66b433?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxrb3JlYW4lMjBvZmZpY2UlMjB0ZWFtJTIwbWVldGluZyUyMGJ1c2luZXNzfGVufDF8fHx8MTc3MzIwODc4MHww&ixlib=rb-4.1.0&q=80&w=1080');">
+            <div class="login-overlay"></div>
+        </div>
+
+        <!-- Login Box -->
+        <div class="login-box">
+            <!-- Logo and Company Name -->
+            <div class="text-center mb-4">
+                <img src="assets/logo2.svg" alt="웅진 로고" class="login-logo mb-3">
+                <h2 class="company-name" style="display: none;">웅진 프리드라이프</h2>
+            </div>
+
+            <h1 class="login-title text-center mb-4">사용자 로그인</h1>
+
+            <form id="loginForm">
+                <!-- User Type Select -->
+                <div class="mb-3 position-relative">
+                    <label for="userType" class="visually-hidden">사용자 유형</label>
+                    <select class="form-select user-select" id="userType" aria-label="사용자 유형 선택">
+                        <option value="null">사용자 선택</option>
+                        <option value="관리자" selected>관리자</option>
+                        <option value="사용자">사용자</option>
+                    </select>
+                    <i data-lucide="chevron-down" class="select-icon" aria-hidden="true"></i>
+                </div>
+
+                <!-- Employee ID -->
+                <div class="mb-3">
+                    <label for="employeeId" class="visually-hidden">사원번호</label>
+                    <input type="text" class="form-control login-input" id="employeeId" placeholder="사원번호" autocomplete="username" aria-label="사원번호">
+                </div>
+
+                <!-- Password -->
+                <div class="mb-3">
+                    <label for="password" class="visually-hidden">비밀번호</label>
+                    <input type="password" class="form-control login-input" id="password" placeholder="비밀번호" autocomplete="current-password" aria-label="비밀번호">
+                </div>
+
+                <!-- Remember Me Checkbox (역할: checkbox, 키보드 Space 지원) -->
+                <div class="mb-3 d-flex align-items-center">
+                    <button type="button" class="custom-checkbox" id="rememberCheckbox" role="checkbox" aria-checked="false" aria-label="로그인 유지">
+                        <i data-lucide="check" class="check-icon d-none" aria-hidden="true"></i>
+                    </button>
+                    <label class="remember-label ms-2" for="rememberCheckbox" id="rememberLabel">로그인 유지</label>
+                </div>
+
+                <!-- Login Button -->
+                <button type="submit" class="btn btn-primary login-btn w-100">로그인</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JS -->
+    <script src="js/main.js"></script>
+    
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+        
+        // Login form handler
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            window.location.href = 'dashboard.html';
+        });
+
+        // Custom checkbox (접근성: role=checkbox, aria-checked, Space 키 지원)
+        const checkbox = document.getElementById('rememberCheckbox');
+        let isChecked = false;
+        function updateCheckbox(checked) {
+            isChecked = checked;
+            checkbox.setAttribute('aria-checked', isChecked ? 'true' : 'false');
+            checkbox.classList.toggle('checked', isChecked);
+            var icon = checkbox.querySelector('.check-icon');
+            if (icon) icon.classList.toggle('d-none', !isChecked);
+        }
+        checkbox.addEventListener('click', function() { updateCheckbox(!isChecked); });
+        checkbox.addEventListener('keydown', function(e) {
+            if (e.key === ' ' || e.key === 'Enter') {
+                e.preventDefault();
+                updateCheckbox(!isChecked);
+            }
+        });
+        // label for="rememberCheckbox" 로 연결되어 있어 라벨 클릭 시 버튼 클릭이 전달됨
+    </script>
+    <script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+</body>
+</html>

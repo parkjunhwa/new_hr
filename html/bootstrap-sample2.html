@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>부트스트랩 예시2 - 웅진프리드라이프</title>
+    <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <script src="lib/lucide/lucide.min.js"></script>
+</head>
+<body class="dashboard-page">
+    <a href="#mainContent" class="skip-link">본문 바로가기</a>
+    <div class="mobile-overlay" id="mobileOverlay" aria-hidden="true"></div>
+    <div id="sidebarMount"></div>
+    <div class="main-content">
+        <div id="headerMount"></div>
+        <main id="mainContent" class="content-area doc-oath-page" role="main" aria-label="부트스트랩 예시2 본문">
+            <div class="container-fluid p-3 p-md-3 p-lg-4 d-flex flex-column min-h-0">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb mb-0">
+                        <li class="breadcrumb-item"><a href="dashboard.html"><i data-lucide="home" class="align-text-bottom" style="width: 1rem; height: 1rem;" aria-hidden="true"></i>홈</a></li>
+                        <li class="breadcrumb-item">메뉴 예시</li>
+                        <li class="breadcrumb-item active" aria-current="page">부트스트랩 예시2</li>
+                    </ol>
+                </nav>
+                <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-2">
+                    <h1 class="h4 mb-0">부트스트랩 예시2</h1>
+                </div>
+
+                <p class="text-muted mb-3">테이블 그리드와 카드 영역에서 <strong>데이터가 없을 때</strong> 보이는 공통 빈 상태(<code>.empty-state-block</code>) 테스트 예시입니다.</p>
+
+                <!-- 1. 테이블 그리드 · 데이터 없음 예시 -->
+                <div class="card table-grid-card flex-grow-1 min-h-0 d-flex flex-column mb-3">
+                    <div class="card-body table-grid-card-body">
+                        <div class="table-grid-scroll">
+                            <table class="table align-middle mb-0 table-grid-table">
+                                <colgroup>
+                                    <col style="width: 25%;">
+                                    <col style="width: 25%;">
+                                    <col style="width: 25%;">
+                                    <col style="width: 25%;">
+                                </colgroup>
+                                <thead>
+                                    <tr>
+                                        <th scope="col" class="text-center">컬럼1</th>
+                                        <th scope="col" class="text-center">컬럼2</th>
+                                        <th scope="col" class="text-center">컬럼3</th>
+                                        <th scope="col" class="text-center">컬럼4</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="empty-state-row">
+                                        <td colspan="4">
+                                            <div class="empty-state-block">
+                                                <span class="empty-state-icon"><i data-lucide="inbox" aria-hidden="true"></i></span>
+                                                <span class="empty-state-text">데이터가 없습니다</span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. 카드/영역 · 데이터 없음 예시 -->
+                <div class="card mb-0">
+                    <div class="card-body">
+                        <div class="empty-state-block">
+                            <span class="empty-state-icon"><i data-lucide="inbox" aria-hidden="true"></i></span>
+                            <span class="empty-state-text">데이터가 없습니다</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="js/layout-templates.js"></script>
+    <script src="js/nav-config.js"></script>
+    <script src="js/main.js"></script>
+    <script>lucide.createIcons();</script>
+    <script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+</body>
+</html>

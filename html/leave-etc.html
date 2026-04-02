@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>기타휴가 - 웅진프리드라이프</title>
+    <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <script src="lib/lucide/lucide.min.js"></script>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body class="dashboard-page">
+    <a href="#main-content" class="skip-link">본문 바로가기</a>
+    <div class="mobile-overlay" id="mobileOverlay" aria-hidden="true"></div>
+    <div id="sidebarMount"></div>
+
+    <div class="main-content">
+        <div id="headerMount"></div>
+
+        <main id="main-content" class="content-area leave-page" role="main" aria-label="기타휴가 본문">
+            <div class="container-fluid p-3 p-md-3 p-lg-4 d-flex flex-column min-h-0">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb mb-0">
+                        <li class="breadcrumb-item"><a href="dashboard.html"><i data-lucide="home" class="align-text-bottom icon-16"
+                                    aria-hidden="true"></i>홈</a></li>
+                        <li class="breadcrumb-item">휴가관리</li>
+                        <li class="breadcrumb-item active" aria-current="page">기타휴가</li>
+                    </ol>
+                </nav>
+
+                <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-2">
+                    <h1 class="h4 mb-0">기타휴가</h1>
+                </div>
+
+                <div class="card table-grid-card flex-grow-1 min-h-0 d-flex flex-column">
+                    <div class="card-body table-grid-card-body">
+                        <div class="leave-empty-wrap">
+                            <div class="empty-state-block">
+                                <span class="empty-state-icon"><i data-lucide="inbox" aria-hidden="true"></i></span>
+                                <span class="empty-state-text">준비중입니다</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="js/layout-templates.js"></script>
+    <script src="js/nav-config.js"></script>
+    <script src="js/main.js"></script>
+    <script>lucide.createIcons();</script>
+    <script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+</body>
+
+</html>

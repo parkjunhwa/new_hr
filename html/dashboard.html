@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>웅진프리드라이프</title>
+
+    <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <script src="lib/lucide/lucide.min.js"></script>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body class="dashboard-page">
+    <a href="#main-content" class="skip-link">본문 바로가기</a>
+    <div class="mobile-overlay" id="mobileOverlay" aria-hidden="true"></div>
+    <div id="sidebarMount"></div>
+
+    <div class="main-content">
+        <div id="headerMount"></div>
+
+        <main id="main-content" class="content-area" role="main" aria-label="대시보드 본문">
+            <div class="container-fluid p-3 p-md-3 p-lg-4">
+                <div class="dashboard-split">
+                    <div class="dashboard-left">
+                        <div class="card profile-widget">
+                            <div class="card-body p-3 mt-1">
+
+                                <div class="leave-status-widget mb-6 mb-md-4 pb-6 pb-md-4 border-bottom">
+                                    <h4 class="leave-status-title">연차현황</h4>
+                                    <div class="leave-status-bar-wrap">
+                                        <div class="leave-status-bar" role="progressbar" aria-valuenow="2.5"
+                                            aria-valuemin="0" aria-valuemax="17" aria-label="연차 사용률">
+                                            <div class="leave-status-bar-fill"></div>
+                                        </div>
+                                        <div class="leave-status-bar-tooltip" aria-hidden="true">
+                                            <span class="leave-status-bar-tooltip-arrow"></span>
+                                            <span class="leave-status-bar-tooltip-text">0%</span>
+                                        </div>
+                                    </div>
+                                    <div class="leave-status-cols">
+                                        <div class="leave-status-col">
+                                            <span class="leave-status-label">잔여연차</span>
+                                            <span class="leave-status-value leave-status-value-primary">14.5d</span>
+                                        </div>
+                                        <div class="leave-status-col">
+                                            <span class="leave-status-label">사용연차</span>
+                                            <span class="leave-status-value">2.5d</span>
+                                        </div>
+                                        <div class="leave-status-col">
+                                            <span class="leave-status-label">총연차</span>
+                                            <span class="leave-status-value">17d</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="overtime-status-widget mb-6 mb-md-4 pb-6 pb-md-4 border-bottom">
+                                    <h4 class="overtime-status-title">시간외근무현황</h4>
+                                    <p class="overtime-status-date">
+                                        <i data-lucide="calendar" class="overtime-status-date-icon"></i>
+                                        2026.01.04 ~ 2026.01.10
+                                    </p>
+                                    <p class="overtime-status-label">시간외 근무시간</p>
+                                    <p class="overtime-status-value">
+                                        <span class="overtime-status-number" data-value="6.5">0</span>
+                                        <span class="overtime-status-unit"> Hour</span>
+                                    </p>
+                                    <div class="overtime-status-ring" data-progress="75" aria-label="시간외근무 진행률 75%">
+                                        <svg class="overtime-ring-svg" viewBox="0 0 120 120" role="img"
+                                            aria-hidden="true">
+                                            <circle class="overtime-ring-track" cx="60" cy="60" r="46"></circle>
+                                            <circle class="overtime-ring-progress" cx="60" cy="60" r="46"></circle>
+                                        </svg>
+                                        <div class="overtime-ring-text" data-value="75">0%</div>
+                                    </div>
+                                </div>
+
+                                <div class="daily-attendance-widget">
+                                    <h4 class="daily-attendance-title">일 근태 현황</h4>
+                                    <p class="daily-attendance-date">2026년 3월 4일 수요일</p>
+                                    <div class="attendance-box">
+                                        <div class="attendance-row">
+                                            <span class="attendance-label">출근시간</span>
+                                            <span class="attendance-time">08:45</span>
+                                        </div>
+                                        <div class="attendance-row">
+                                            <span class="attendance-label">퇴근시간</span>
+                                            <span class="attendance-time text-muted">18:00</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-right">
+                        <div class="card mb-3 mb-md-3">
+                            <div class="card-body">
+                                <div class="widget-header mb-3">
+                                    <h3 class="widget-title">인사소식</h3>
+                                    <button type="button" class="btn btn-more" aria-label="인사소식 더보기">
+                                        more
+                                        <i data-lucide="chevron-right" class="icon-sm" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+
+                                <div class="row g-2 g-md-3" id="hrNewsContainer">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card announcement-widget mb-3 mb-md-3">
+                            <div class="card-body">
+                                <div class="announcement-widget-header">
+                                    <h3 class="widget-title mb-3">알립니다</h3>
+                                </div>
+
+                                <div class="announcement-tabs-row">
+                                    <div class="announcement-tabs" role="tablist" aria-label="알립니다 탭">
+                                        <button type="button" class="announcement-tab active" role="tab" aria-selected="true" aria-controls="announcement-panel" id="tab-공지사항" data-tab="공지사항">공지사항</button>
+                                        <button type="button" class="announcement-tab" role="tab" aria-selected="false" aria-controls="announcement-panel" id="tab-결재요청현황" data-tab="결재요청현황">결재요청현황</button>
+                                        <button type="button" class="announcement-tab" role="tab" aria-selected="false" aria-controls="announcement-panel" id="tab-부서원등기현황" data-tab="부서원등기현황">부서원등기현황</button>
+                                        <button type="button" class="announcement-tab" role="tab" aria-selected="false" aria-controls="announcement-panel" id="tab-경조사안내" data-tab="경조사안내">경조사안내</button>
+                                    </div>
+                                    <button type="button" class="announcement-more-btn" aria-label="알립니다 더보기">
+                                        more
+                                        <i data-lucide="chevron-right" class="icon-sm" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+
+                                <div class="announcement-table-wrap" id="announcement-panel" role="tabpanel" aria-labelledby="tab-공지사항">
+                                    <table class="announcement-table">
+                                        <thead>
+                                            <tr>
+                                                <th class="col-type">공지형식</th>
+                                                <th class="col-title">제 목</th>
+                                                <th class="col-author">작성자</th>
+                                                <th class="col-date">작성일자</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="announcementTableBody">
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row g-3 g-md-3">
+                            <div class="col-md-6">
+                                <div class="card favorites-hr-card">
+                                    <div class="card-body">
+                                        <h3 class="widget-title mb-3">즐겨찾기</h3>
+                                        <div class="favorites-grid" id="favoritesGrid" aria-label="즐겨찾기 메뉴">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="card favorites-hr-card">
+                                    <div class="card-body">
+                                        <h3 class="widget-title mb-3">인사서식</h3>
+                                        <div class="hr-forms-grid">
+                                            <button type="button" class="hr-form-btn hr-form-orange">근로계약서</button>
+                                            <button type="button" class="hr-form-btn hr-form-purple">재직증명서</button>
+                                            <button type="button" class="hr-form-btn hr-form-pink">경력증명서</button>
+                                            <button type="button" class="hr-form-btn hr-form-emerald">인사기록카드</button>
+                                            <button type="button" class="hr-form-btn hr-form-blue">개인정보 동의서</button>
+                                            <button type="button" class="hr-form-btn hr-form-amber">임산부 근로시간 단축</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div class="modal fade" id="favoritesModal" tabindex="-1" aria-labelledby="favoritesModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="favoritesModalLabel">즐겨찾기</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="닫기"></button>
+                </div>
+                <div class="modal-body">
+                    <label class="form-label mb-1" for="favoritesModalAddSelect">문서 추가</label>
+                    <select id="favoritesModalAddSelect" class="form-select form-select-sm favorites-modal-add-select w-100"
+                        aria-label="추가할 즐겨찾기 문서"></select>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+                    <button type="button" class="btn btn-primary" id="favoritesModalAddBtn">추가</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="js/layout-templates.js"></script>
+    <script src="js/nav-config.js"></script>
+    <script src="js/main.js"></script>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // HR News data (인사소식: 이동, 입사, 퇴사, 승진, 휴직 5가지)
+        const hrNews = [
+            {
+                id: 1,
+                name: "장우성 전무",
+                position: "전무이사",
+                tag: "승진",
+                tagClass: "badge-success",
+                date: "2026.01.23",
+                image: "https://images.unsplash.com/photo-1661854236305-b02cef4aa0af?q=80&w=200"
+            },
+            {
+                id: 2,
+                name: "김민수 대리",
+                position: "개발팀",
+                tag: "입사",
+                tagClass: "badge-warning",
+                date: "2026.01.20",
+                image: "https://images.unsplash.com/photo-1741675121661-3ace9d68caba?q=80&w=200"
+            },
+            {
+                id: 3,
+                name: "이지은 과장",
+                position: "ERP본부",
+                tag: "퇴사",
+                tagClass: "badge-danger",
+                date: "2026.01.18",
+                image: "https://images.unsplash.com/photo-1674154082514-44b308d0209e?q=80&w=200"
+            },
+            {
+                id: 4,
+                name: "박준호 차장",
+                position: "기획팀",
+                tag: "이동",
+                tagClass: "badge-info",
+                date: "2026.01.15",
+                image: "https://images.unsplash.com/photo-1544530047-bb7fd03a8a6f?q=80&w=200"
+            },
+            {
+                id: 5,
+                name: "최수정 부장",
+                position: "인사팀",
+                tag: "승진",
+                tagClass: "badge-success",
+                date: "2026.01.12",
+                image: "https://images.unsplash.com/photo-1771293948689-10487a4517a9?q=80&w=200"
+            },
+            {
+                id: 6,
+                name: "정태영 사원",
+                position: "마케팅본부",
+                tag: "입사",
+                tagClass: "badge-warning",
+                date: "2026.01.10",
+                image: "https://images.unsplash.com/photo-1700954343841-2134b33d569d?q=80&w=200"
+            },
+            {
+                id: 7,
+                name: "강혜진 대리",
+                position: "재무팀",
+                tag: "휴직",
+                tagClass: "badge-secondary",
+                date: "2026.01.08",
+                image: "https://images.unsplash.com/photo-1600566977838-58ca846e9eb2?q=80&w=200"
+            },
+            {
+                id: 8,
+                name: "윤성호 과장",
+                position: "영업본부",
+                tag: "퇴사",
+                tagClass: "badge-danger",
+                date: "2026.01.05",
+                image: "assets/noprofileimg.png"
+            }
+        ];
+
+        // Inject HR News
+        const hrNewsContainer = document.getElementById('hrNewsContainer');
+        hrNews.forEach(person => {
+            const col = document.createElement('div');
+            col.className = 'col-sm-6 col-lg-6 col-xl-3';
+            col.innerHTML = `
+                <div class="hr-news-card">
+                    <div class="d-flex gap-2 gap-md-3">
+                        <div class="hr-news-image">
+                            <img src="${person.image}" alt="${person.name}" class="w-100 h-100 object-fit-cover">
+                        </div>
+                        <div class="flex-grow-1 min-w-0">
+                            <div class="mb-1">
+                                <span class="badge ${person.tagClass}">${person.tag}</span>
+                            </div>
+                            <div class="hr-news-name">${person.name}</div>
+                            <div class="hr-news-position">${person.position}</div>
+                            <div class="hr-news-date">발령일자 : ${person.date}</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            hrNewsContainer.appendChild(col);
+        });
+
+        // Re-initialize icons after dynamic content
+        lucide.createIcons();
+
+        // Announcement widget: data
+        const announcementData = [
+            { type: "부서", title: "1월 업무추진사업팀 회식안내 안내", author: "나웅진", date: "2026.01.23", url: "#" },
+            { type: "전사", title: "2025년 과추 연말정산 안내 드립니다.", author: "인사지원팀", date: "2026.01.15", url: "#" },
+            { type: "본부", title: "본부 인력 프로필 작성안내", author: "중장동 본부장", date: "2026.01.02", url: "#" },
+            { type: "부서", title: "본인 명기 진행부탁 드립니다.", author: "나웅진", date: "2026.01.03", url: "#" },
+            { type: "전사", title: "2025년 부서별 연차 사용 결과", author: "인사지원팀", date: "2026.01.02", url: "#" }
+        ];
+        const approvalData = [
+            { type: "대기", title: "출장비 정산 요청", author: "김철수", date: "2026.01.22", url: "#" },
+            { type: "진행", title: "연차 사용 신청", author: "이영희", date: "2026.01.21", url: "#" },
+            { type: "완료", title: "비품 구매 요청", author: "박민수", date: "2026.01.20", url: "#" },
+            { type: "대기", title: "법인카드 사용 내역 확인", author: "최영수", date: "2026.01.19", url: "#" },
+            { type: "진행", title: "재택근무 신청서", author: "홍길동", date: "2026.01.18", url: "#" }
+        ];
+        const registrationData = [
+            { type: "신규", title: "신입사원 등기 완료", author: "총무팀", date: "2026.01.18", url: "#" },
+            { type: "변경", title: "부서 이동에 따른 정보 변경", author: "인사팀", date: "2026.01.15", url: "#" },
+            { type: "신규", title: "계약직 전환 등기", author: "총무팀", date: "2026.01.12", url: "#" },
+            { type: "변경", title: "승진에 따른 직급 변경", author: "인사팀", date: "2026.01.10", url: "#" },
+            { type: "신규", title: "파견 근무자 등기", author: "총무팀", date: "2026.01.08", url: "#" }
+        ];
+        // 경조사안내: 결혼, 출산, 근조 3가지
+        const eventData = [
+            { type: "결혼", title: "김대리 결혼 안내", author: "총무팀", date: "2026.01.25", url: "#" },
+            { type: "근조", title: "이과장 부친상", author: "총무팀", date: "2026.01.20", url: "#" },
+            { type: "출산", title: "박차장 자녀 출산", author: "총무팀", date: "2026.01.17", url: "#" },
+            { type: "근조", title: "최팀장 모친상", author: "총무팀", date: "2026.01.14", url: "#" },
+            { type: "결혼", title: "정부장 회혼례", author: "총무팀", date: "2026.01.11", url: "#" }
+        ];
+        const announcementByTab = {
+            "공지사항": announcementData,
+            "결재요청현황": approvalData,
+            "부서원등기현황": registrationData,
+            "경조사안내": eventData
+        };
+        const typeToBadgeClass = {
+            "부서": "type-dept", "전사": "type-company", "본부": "type-division",
+            "대기": "type-wait", "진행": "type-progress", "완료": "type-done",
+            "신규": "type-new", "변경": "type-change",
+            "결혼": "type-marriage", "출산": "type-birth", "근조": "type-condolence"
+        };
+
+        function getAnnouncementBadgeClass(type) {
+            return "announcement-type-badge " + (typeToBadgeClass[type] || "type-default");
+        }
+
+        function renderAnnouncementTable(tabKey) {
+            const tbody = document.getElementById("announcementTableBody");
+            const list = announcementByTab[tabKey] || announcementData;
+            tbody.innerHTML = list.map(function (item) {
+                const badgeClass = getAnnouncementBadgeClass(item.type);
+                const titleHref = item.url != null && item.url !== "" ? item.url : "#";
+                return "<tr><td class=\"col-type\"><span class=\"" + badgeClass + "\">" + item.type + "</span></td>" +
+                    "<td class=\"col-title\"><a class=\"announcement-title-link\" href=\"" + titleHref + "\">" + item.title + "</a></td>" +
+                    "<td class=\"col-author\">" + item.author + "</td>" +
+                    "<td class=\"col-date\">" + item.date + "</td></tr>";
+            }).join("");
+        }
+
+        document.querySelectorAll(".announcement-tab").forEach(function (btn) {
+            btn.addEventListener("click", function () {
+                var tabId = this.id;
+                document.querySelectorAll(".announcement-tab").forEach(function (b) {
+                    b.classList.remove("active");
+                    b.setAttribute("aria-selected", "false");
+                });
+                this.classList.add("active");
+                this.setAttribute("aria-selected", "true");
+                var panel = document.getElementById("announcement-panel");
+                if (panel) panel.setAttribute("aria-labelledby", tabId);
+                renderAnnouncementTable(this.getAttribute("data-tab"));
+            });
+        });
+
+        renderAnnouncementTable("공지사항");
+        lucide.createIcons();
+
+        /**
+         * 즐겨찾기(대시보드 6칸 + 모달)
+         *
+         * [저장 위치]
+         *   window.localStorage (브라우저만, 서버/파일 미저장)
+         *   동일 출처(프로토콜+호스트+포트)에서만 공유. file:// 로 열면 파일 경로별로 분리될 수 있음.
+         *
+         * [확인 방법 — 개발자 도구]
+         *   Chrome/Edge: F12 → Application 탭 → Storage → Local Storage → 해당 origin
+         *   Firefox: F12 → 저장소 탭 → 로컬 스토리지
+         *   키 이름은 아래 FAV_STORAGE_KEY 와 동일.
+         *
+         * [값 형식]
+         *   localStorage에는 JSON.stringify된 문자열이 들어감. 파싱 후 길이 6 배열.
+         *   각 요소: FAVORITE_MENU_ITEMS[].value 와 같은 문자열, 또는 null(빈 칸).
+         *   로드 시 빈 문자열("")도 null로 정규화됨( v || null ).
+         *   예: ["a",null,"c",null,null,null]  (value는 a,b,c… 한 글자)
+         *
+         * [즐겨찾기 목록]
+         *   아래 스크립트의 FAVORITE_MENU_ITEMS 배열만 사용. 사이드 메뉴(nav-config.js)와 자동 연동 없음.
+         *
+         * [UI]
+         *   모달: 본문 셀렉트(미선택 문서만) — 푸터 [닫기] 오른쪽 [추가] 시 첫 빈 칸에 반영·즉시 저장.
+         *   그리드: 문서 카드 자체를 드래그해 맞바꿈·빈 칸 이동. 카드 오른쪽 위 검은 원(16px) − 로 제거·즉시 저장.
+         *
+         * [이전 키]
+         *   newHR_dashboard_favorites_v2 — 객체 배열(슬롯당 { label, path } 또는 예전 { label, href }).
+         *   loadFavoriteValues에서 읽어 value 문자열 배열로 바꾼 뒤 v3에만 저장함. v2 키는 삭제하지 않음.
+         */
+        (function () {
+            /** @constant 로컬스토리지 키 — 위 블록 주석과 동일 문자열로 DevTools에서 검색 */
+            var FAV_STORAGE_KEY = 'newHR_dashboard_favorites_v3';
+            var SLOT_COUNT = 6;
+
+            /**
+             * 즐겨찾기 전용 문서 목록 (사이드 메뉴 NAV_CONFIG 와 무관 — 여기만 편집)
+             * name: 셀렉트·그리드 표시명 / link: 현재 모두 # (이동 없음) / value: 저장용 고유값(a,b,c…)
+             * 1~3번은 대표 양식명, 4번째(d)부터는 메뉴명이 아닌 그럴듯한 문서·신청서 예시명.
+             */
+            var FAVORITE_MENU_ITEMS = [
+                { name: '연차 신청서', link: '#', value: 'a' },
+                { name: '시간외 근무 신청서', link: '#', value: 'b' },
+                { name: '입사자 근로계약서', link: '#', value: 'c' },
+                { name: '주간 업무요약 보고서', link: '#', value: 'd' },
+                { name: '개인정보 수집·이용 동의서(2026)', link: '#', value: 'e' },
+                { name: '전자문서 보안서약서', link: '#', value: 'f' },
+                { name: '재직증명서 온라인 발급 신청', link: '#', value: 'g' },
+                { name: '연차·대체휴가 사용원', link: '#', value: 'h' },
+                { name: '경조사 유급휴가 신청서', link: '#', value: 'i' },
+                { name: '병가·공가 신청(첨부양식)', link: '#', value: 'j' },
+                { name: '소정근로시간 확인 요청서', link: '#', value: 'k' },
+                { name: '육아시간 단축근로 신청', link: '#', value: 'l' },
+                { name: '휴직 복귀 통보서', link: '#', value: 'm' },
+                { name: '급여명세 이메일 수신 동의', link: '#', value: 'n' },
+                { name: '연말정산 홈택스 제출 안내', link: '#', value: 'o' },
+                { name: '단체보험 가입·변경 신청', link: '#', value: 'p' },
+                { name: '사내 증빙 제출 가이드', link: '#', value: 'q' },
+                { name: '법인카드 사용 점검표', link: '#', value: 'r' }
+            ];
+
+            function getMenuItemByValue(val) {
+                if (!val) return null;
+                for (var i = 0; i < FAVORITE_MENU_ITEMS.length; i++) {
+                    if (FAVORITE_MENU_ITEMS[i].value === val) return FAVORITE_MENU_ITEMS[i];
+                }
+                return null;
+            }
+
+            function defaultFavoriteValues() {
+                return [null, null, null, null, null, null];
+            }
+
+            /** 6칸에 어떤 value가 선택됐는지 (null = 빈 칸) */
+            var favoriteValues = [];
+
+            /** 페이지 로드 시 FAV_STORAGE_KEY 읽기. 없거나 형식 오류 시 기본값(6칸 전부 null). */
+            function loadFavoriteValues() {
+                try {
+                    var raw = localStorage.getItem(FAV_STORAGE_KEY);
+                    if (raw) {
+                        var parsed = JSON.parse(raw);
+                        if (Array.isArray(parsed) && parsed.length === SLOT_COUNT) {
+                            return parsed.map(function (v) { return v || null; });
+                        }
+                    }
+                    // v2: { label, path } 또는 예전 { label, href } → value 문자열 배열로 변환 후 v3 기록
+                    raw = localStorage.getItem('newHR_dashboard_favorites_v2');
+                    if (raw) {
+                        var slots = JSON.parse(raw);
+                        if (Array.isArray(slots) && slots.length === SLOT_COUNT) {
+                            var toVal = slots.map(function (slot) {
+                                if (!slot) return null;
+                                var path = slot.path != null ? slot.path : slot.href;
+                                var name = slot.label || slot.name;
+                                for (var i = 0; i < FAVORITE_MENU_ITEMS.length; i++) {
+                                    var it = FAVORITE_MENU_ITEMS[i];
+                                    if (name && it.name === name) return it.value;
+                                }
+                                return null;
+                            });
+                            localStorage.setItem(FAV_STORAGE_KEY, JSON.stringify(toVal));
+                            return toVal;
+                        }
+                    }
+                } catch (e) { /* fallthrough */ }
+                return defaultFavoriteValues();
+            }
+
+            favoriteValues = loadFavoriteValues();
+
+            /** 즐겨찾기 6칸 → localStorage(FAV_STORAGE_KEY). 추가·드래그 순서 변경 시마다 호출. */
+            function saveFavoriteValues() {
+                localStorage.setItem(FAV_STORAGE_KEY, JSON.stringify(favoriteValues));
+            }
+
+            function isValueAlreadyFavorite(val) {
+                return favoriteValues.indexOf(val) !== -1;
+            }
+
+            function refreshModalAddSelect() {
+                var sel = document.getElementById('favoritesModalAddSelect');
+                if (!sel) return;
+                sel.innerHTML = '';
+                var placeholder = document.createElement('option');
+                placeholder.value = '';
+                placeholder.textContent = '추가할 문서를 선택하세요';
+                sel.appendChild(placeholder);
+                FAVORITE_MENU_ITEMS.forEach(function (item) {
+                    if (isValueAlreadyFavorite(item.value)) return;
+                    var o = document.createElement('option');
+                    o.value = item.value;
+                    o.textContent = item.name;
+                    sel.appendChild(o);
+                });
+            }
+
+            function findFirstEmptySlot() {
+                for (var i = 0; i < SLOT_COUNT; i++) {
+                    if (!favoriteValues[i]) return i;
+                }
+                return -1;
+            }
+
+            function clearFavoriteDragOver() {
+                document.querySelectorAll('.favorites-grid-cell--drag-over').forEach(function (el) {
+                    el.classList.remove('favorites-grid-cell--drag-over');
+                });
+            }
+
+            function applyFavoriteSlotDrop(fromIdx, toIdx) {
+                if (fromIdx === toIdx || fromIdx < 0 || toIdx < 0) return;
+                var a = favoriteValues[fromIdx];
+                var b = favoriteValues[toIdx];
+                if (a == null) return;
+                if (b == null) {
+                    favoriteValues[toIdx] = a;
+                    favoriteValues[fromIdx] = null;
+                } else {
+                    favoriteValues[fromIdx] = b;
+                    favoriteValues[toIdx] = a;
+                }
+                saveFavoriteValues();
+                renderFavoritesGrid();
+                refreshModalAddSelect();
+            }
+
+            function openFavoritesModal() {
+                refreshModalAddSelect();
+                var el = document.getElementById('favoritesModal');
+                if (!el || typeof bootstrap === 'undefined') return;
+                bootstrap.Modal.getOrCreateInstance(el).show();
+            }
+
+            function renderFavoritesGrid() {
+                var grid = document.getElementById('favoritesGrid');
+                if (!grid) return;
+                grid.innerHTML = '';
+                for (var i = 0; i < SLOT_COUNT; i++) {
+                    (function (slotIndex) {
+                        var val = favoriteValues[slotIndex];
+                        var item = getMenuItemByValue(val);
+                        var cell = document.createElement('div');
+                        cell.className = 'favorites-grid-cell';
+                        cell.dataset.slotIndex = String(slotIndex);
+                        cell.addEventListener('dragover', function (e) {
+                            e.preventDefault();
+                            e.dataTransfer.dropEffect = 'move';
+                            cell.classList.add('favorites-grid-cell--drag-over');
+                        });
+                        cell.addEventListener('dragleave', function (e) {
+                            if (!cell.contains(e.relatedTarget)) {
+                                cell.classList.remove('favorites-grid-cell--drag-over');
+                            }
+                        });
+                        cell.addEventListener('drop', function (e) {
+                            e.preventDefault();
+                            clearFavoriteDragOver();
+                            var fromStr = e.dataTransfer.getData('text/plain');
+                            var fromIdx = parseInt(fromStr, 10);
+                            if (isNaN(fromIdx)) return;
+                            applyFavoriteSlotDrop(fromIdx, slotIndex);
+                        });
+
+                        if (item) {
+                            var btnWrap = document.createElement('div');
+                            btnWrap.className = 'favorites-btn-slot-wrap';
+
+                            var removeBtn = document.createElement('button');
+                            removeBtn.type = 'button';
+                            removeBtn.className = 'favorites-slot-remove';
+                            removeBtn.setAttribute('draggable', 'false');
+                            removeBtn.setAttribute('aria-label', '즐겨찾기에서 제거');
+                            removeBtn.setAttribute('title', '제거');
+                            removeBtn.appendChild(document.createTextNode('-'));
+                            removeBtn.addEventListener('click', function (e) {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                favoriteValues[slotIndex] = null;
+                                saveFavoriteValues();
+                                renderFavoritesGrid();
+                                refreshModalAddSelect();
+                                if (typeof showToast === 'function') {
+                                    showToast('즐겨찾기에서 제거했습니다.', 'info');
+                                }
+                            });
+
+                            var ignoreCardClickAfterDrag = false;
+                            var btn = document.createElement('button');
+                            btn.type = 'button';
+                            btn.setAttribute('draggable', 'true');
+                            btn.className = 'favorites-btn favorites-btn-slot';
+                            btn.textContent = item.name;
+                            btn.setAttribute('data-favorite-value', item.value);
+                            btn.setAttribute('data-favorite-link', item.link);
+                            btn.setAttribute('aria-label', item.name + ' — 드래그하여 순서 변경, 클릭 시 이동');
+                            btn.addEventListener('dragstart', function (e) {
+                                e.dataTransfer.setData('text/plain', String(slotIndex));
+                                e.dataTransfer.effectAllowed = 'move';
+                            });
+                            btn.addEventListener('dragend', function () {
+                                clearFavoriteDragOver();
+                                ignoreCardClickAfterDrag = true;
+                                setTimeout(function () {
+                                    ignoreCardClickAfterDrag = false;
+                                }, 120);
+                            });
+                            (function (href) {
+                                btn.addEventListener('click', function (e) {
+                                    e.preventDefault();
+                                    if (ignoreCardClickAfterDrag) {
+                                        return;
+                                    }
+                                    if (href && href !== '#') {
+                                        window.location.href = href;
+                                    } else {
+                                        window.location.href = '#';
+                                    }
+                                });
+                            })(item.link);
+
+                            btnWrap.appendChild(removeBtn);
+                            btnWrap.appendChild(btn);
+                            cell.appendChild(btnWrap);
+                        } else {
+                            var plus = document.createElement('button');
+                            plus.type = 'button';
+                            plus.className = 'favorites-btn favorites-btn-plus';
+                            plus.setAttribute('aria-label', '즐겨찾기 추가');
+                            plus.innerHTML = '<i data-lucide="plus" class="icon-plus"></i>';
+                            plus.addEventListener('click', function (e) {
+                                e.preventDefault();
+                                openFavoritesModal();
+                            });
+                            cell.appendChild(plus);
+                        }
+                        grid.appendChild(cell);
+                    })(i);
+                }
+                if (typeof lucide !== 'undefined') lucide.createIcons();
+            }
+
+            var addBtn = document.getElementById('favoritesModalAddBtn');
+            if (addBtn) {
+                addBtn.addEventListener('click', function () {
+                    var sel = document.getElementById('favoritesModalAddSelect');
+                    if (!sel) return;
+                    var v = sel.value || null;
+                    if (!v) {
+                        if (typeof showToast === 'function') {
+                            showToast('추가할 문서를 선택하세요.', 'warning');
+                        }
+                        return;
+                    }
+                    if (isValueAlreadyFavorite(v)) {
+                        if (typeof showToast === 'function') {
+                            showToast('이미 즐겨찾기에 있습니다.', 'warning');
+                        }
+                        return;
+                    }
+                    var emptyIdx = findFirstEmptySlot();
+                    if (emptyIdx < 0) {
+                        if (typeof showToast === 'function') {
+                            showToast('빈 칸이 없습니다. 드래그로 칸을 비운 뒤 추가하세요.', 'warning');
+                        }
+                        return;
+                    }
+                    favoriteValues[emptyIdx] = v;
+                    saveFavoriteValues();
+                    renderFavoritesGrid();
+                    refreshModalAddSelect();
+                    sel.value = '';
+                    if (typeof showToast === 'function') {
+                        showToast('즐겨찾기에 추가되었습니다.', 'success');
+                    }
+                });
+            }
+
+            renderFavoritesGrid();
+        })();
+    </script>
+    <script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+</body>
+
+</html>

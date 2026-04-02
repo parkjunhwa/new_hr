@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>근무현황 - 웅진프리드라이프</title>
+    <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="lib/datepicker/css/datepicker-bs5.min.css" rel="stylesheet">
+    <script src="lib/lucide/lucide.min.js"></script>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/datepicker-style.css">
+</head>
+
+<body class="dashboard-page">
+    <a href="#main-content" class="skip-link">본문 바로가기</a>
+    <div class="mobile-overlay" id="mobileOverlay" aria-hidden="true"></div>
+    <div id="sidebarMount"></div>
+
+    <div class="main-content">
+        <div id="headerMount"></div>
+
+        <main id="main-content" class="content-area" aria-label="근무현황 본문">
+            <div class="container-fluid p-3 p-md-3 p-lg-4 d-flex flex-column min-h-0">
+                <nav aria-label="현재 위치">
+                    <ol class="breadcrumb mb-0">
+                        <li class="breadcrumb-item">
+                            <a href="dashboard.html">
+                                <i data-lucide="home" class="align-text-bottom icon-16" aria-hidden="true"></i>홈
+                            </a>
+                        </li>
+                        <li class="breadcrumb-item">근태관리</li>
+                        <li class="breadcrumb-item active" aria-current="page">근무현황</li>
+                    </ol>
+                </nav>
+
+                <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-2">
+                    <h1 class="h4 mb-0">근무현황</h1>
+                </div>
+
+                <section class="card query-condition-card mb-3" aria-labelledby="attendanceQueryHeading">
+                    <h2 id="attendanceQueryHeading" class="visually-hidden">조회 조건</h2>
+                    <div class="card-body p-3">
+                        <div class="query-condition-form">
+                            <div class="query-condition-group">
+                                <label for="attendanceMonth" class="form-label">근무년월</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="attendanceMonth" value="2026.03" readonly
+                                        autocomplete="off" inputmode="none">
+                                    <span class="input-group-text bg-white" id="attendanceMonthIcon" role="button" tabindex="0"
+                                        aria-label="근무년월 달력 열기" aria-keyshortcuts="Enter Space">
+                                        <i data-lucide="calendar" class="text-muted icon-16" aria-hidden="true"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <button type="button" class="btn btn-primary d-flex align-items-center gap-1 ms-auto">
+                                <i data-lucide="search" class="icon-16" aria-hidden="true"></i>
+                                검색
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="d-flex flex-column gap-3 flex-1 min-h-0 attendance-work-layout">
+                    <div class="attendance-work-split" id="attendanceWorkSplit"
+                        role="region"
+                        aria-label="소정·연장 근로시간. 상하 구분선을 드래그하거나 키보드로 높이를 조절할 수 있습니다.">
+                        <div class="attendance-work-panel" id="attendanceWorkSplitTop">
+                            <div class="card table-grid-card h-100">
+                        <div class="card-body table-grid-card-body">
+                            <div class="d-flex align-items-center gap-2 mb-2">
+                                <h2 class="h6 mb-0" id="attendanceStdWorkTitle">소정근로시간</h2>
+                            </div>
+                            <div class="table-grid-scroll" role="region" aria-labelledby="attendanceStdWorkTitle">
+                                <table class="table table-hover align-middle mb-0 table-grid-table">
+                                    <caption class="visually-hidden">소정근로시간 일별 목록</caption>
+                                    <colgroup>
+                                        <col style="width:18%;">
+                                        <col style="width:20%;">
+                                        <col style="width:16%;">
+                                        <col style="width:16%;">
+                                        <col>
+                                    </colgroup>
+                                    <thead>
+                                        <tr>
+                                            <th scope="col" class="text-center">근로일</th>
+                                            <th scope="col" class="text-center">시작/종료시간</th>
+                                            <th scope="col" class="text-center">일 근로시간</th>
+                                            <th scope="col" class="text-center">일 근로시간(누적)</th>
+                                            <th scope="col" class="text-center">비고</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="text-center">2026.03.18</td>
+                                            <td class="text-center">09:00 ~ 18:00</td>
+                                            <td class="text-center">08:00</td>
+                                            <td class="text-center">16:00</td>
+                                            <td class="text-start">비고는 왼쪽 정렬입니다.</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center">2026.03.17</td>
+                                            <td class="text-center">09:00 ~ 18:00</td>
+                                            <td class="text-center">08:00</td>
+                                            <td class="text-center">08:00</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center">2026.03.16</td>
+                                            <td class="text-center">00:00 ~ 00:00</td>
+                                            <td class="text-center">08:00</td>
+                                            <td class="text-center"></td>
+                                            <td class="text-center">연차</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center">2026.03.15</td>
+                                            <td class="text-center">00:00 ~ 00:00</td>
+                                            <td class="text-center">00:00</td>
+                                            <td class="text-center"></td>
+                                            <td class="text-center">휴일</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                        </div>
+
+                        <p id="attendanceResizerHint" class="visually-hidden">
+                            위쪽 화살표 키는 소정근로시간 영역을 넓히고, 아래쪽 화살표 키는 연장근로시간 영역을 넓힙니다. Shift 키와 함께 누르면 더 크게 이동합니다.
+                        </p>
+                        <div class="attendance-work-resizer" id="attendanceWorkSplitResizer" role="separator"
+                            aria-orientation="horizontal"
+                            aria-label="소정근로시간과 연장근로시간 영역 사이 높이 조절"
+                            aria-describedby="attendanceResizerHint"
+                            tabindex="0"
+                            aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+                            <span class="attendance-work-resize-icon" aria-hidden="true">
+                                <i data-lucide="chevrons-up-down" class="icon-16" aria-hidden="true"></i>
+                            </span>
+                        </div>
+
+                        <div class="attendance-work-panel" id="attendanceWorkSplitBottom">
+                            <div class="card table-grid-card h-100">
+                        <div class="card-body table-grid-card-body">
+                            <div class="d-flex align-items-center gap-2 mb-2">
+                                <h2 class="h6 mb-0" id="attendanceOtWorkTitle">연장근로시간</h2>
+                            </div>
+                            <div class="table-grid-scroll" role="region" aria-labelledby="attendanceOtWorkTitle">
+                                <table class="table table-hover align-middle mb-0 table-grid-table">
+                                    <caption class="visually-hidden">연장근로시간 일별 목록</caption>
+                                    <colgroup>
+                                        <col style="width:18%;">
+                                        <col style="width:20%;">
+                                        <col style="width:16%;">
+                                        <col style="width:16%;">
+                                        <col>
+                                    </colgroup>
+                                    <thead>
+                                        <tr>
+                                            <th scope="col" class="text-center">연장근로일</th>
+                                            <th scope="col" class="text-center">시작/종료시간</th>
+                                            <th scope="col" class="text-center">일 근로시간</th>
+                                            <th scope="col" class="text-center">월 근로시간(누적)</th>
+                                            <th scope="col" class="text-center">비고</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="text-center">2026.03.23</td>
+                                            <td class="text-center">19:00 ~ 21:00</td>
+                                            <td class="text-center">11:00</td>
+                                            <td class="text-center">03:00</td>
+                                            <td class="text-start">Cts 시스템 점검</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center">2026.03.03</td>
+                                            <td class="text-center">19:00 ~ 21:00</td>
+                                            <td class="text-center">11:00</td>
+                                            <td class="text-center">03:00</td>
+                                            <td class="text-start">Cts 시스템 점검</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                        </div>
+                    </div>
+
+                    <section class="card table-grid-card attendance-monthly-card" aria-labelledby="attendanceMonthlyWorkTitle">
+                        <div class="card-body table-grid-card-body">
+                            <div class="d-flex align-items-center gap-2 mb-2">
+                                <h2 class="h6 mb-0" id="attendanceMonthlyWorkTitle">월별근로시간</h2>
+                            </div>
+                            <div class="table-grid-scroll attendance-monthly-scroll" role="region" aria-labelledby="attendanceMonthlyWorkTitle">
+                                <table class="table table-hover align-middle mb-0 table-grid-table attendance-monthly-table">
+                                    <caption class="visually-hidden">월별근로시간 요약</caption>
+                                    <colgroup>
+                                        <col style="width:16.66%;">
+                                        <col style="width:16.66%;">
+                                        <col style="width:16.66%;">
+                                        <col style="width:16.66%;">
+                                        <col style="width:16.66%;">
+                                        <col style="width:16.66%;">
+                                    </colgroup>
+                                    <thead>
+                                        <tr>
+                                            <th scope="col" class="text-center" colspan="2">소정근로</th>
+                                            <th scope="col" class="text-center" colspan="2">연장근로</th>
+                                            <th scope="col" class="text-center" colspan="2">보상휴가</th>
+                                        </tr>
+                                        <tr>
+                                            <th scope="col" class="text-center">근로시간</th>
+                                            <th scope="col" class="text-center">잔여시간</th>
+                                            <th scope="col" class="text-center">승인시간</th>
+                                            <th scope="col" class="text-center">신청가능</th>
+                                            <th scope="col" class="text-center">부여</th>
+                                            <th scope="col" class="text-center">사용일수</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="text-center">80:00</td>
+                                            <td class="text-center">88:00</td>
+                                            <td class="text-center">0</td>
+                                            <td class="text-center">53</td>
+                                            <td class="text-center">0</td>
+                                            <td class="text-center">0</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/datepicker/js/datepicker.min.js"></script>
+    <script src="js/layout-templates.js"></script>
+    <script src="js/nav-config.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        lucide.createIcons();
+
+        (function () {
+            var monthInput = document.getElementById('attendanceMonth');
+            var monthIcon = document.getElementById('attendanceMonthIcon');
+            if (typeof Datepicker !== 'undefined' && monthInput) {
+                if (!Datepicker.locales.ko) {
+                    Datepicker.locales.ko = {
+                        days: ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'],
+                        daysShort: ['일', '월', '화', '수', '목', '금', '토'],
+                        daysMin: ['일', '월', '화', '수', '목', '금', '토'],
+                        months: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+                        monthsShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+                        today: '오늘',
+                        clear: '지우기',
+                        weekStart: 0,
+                        format: 'yyyy-mm-dd',
+                        titleFormat: 'yyyy년 M'
+                    };
+                }
+
+                var picker = new Datepicker(monthInput, {
+                    format: 'yyyy.mm',
+                    pickLevel: 1,
+                    autohide: true,
+                    language: 'ko'
+                });
+
+                function openPicker() { picker.show(); }
+                if (monthIcon) {
+                    monthIcon.addEventListener('click', openPicker);
+                    monthIcon.addEventListener('keydown', function (e) {
+                        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openPicker(); }
+                    });
+                }
+            }
+        })();
+
+        (function () {
+            var container = document.getElementById('attendanceWorkSplit');
+            var topPanel = document.getElementById('attendanceWorkSplitTop');
+            var bottomPanel = document.getElementById('attendanceWorkSplitBottom');
+            var resizer = document.getElementById('attendanceWorkSplitResizer');
+            if (!container || !topPanel || !bottomPanel || !resizer) return;
+
+            var STORAGE_KEY = 'attendanceWorkSplitTopPx';
+            var MIN_PX = 211;
+
+            function clamp(n, min, max) { return Math.max(min, Math.min(max, n)); }
+
+            function getSizes() {
+                var containerRect = container.getBoundingClientRect();
+                var resizerRect = resizer.getBoundingClientRect();
+                var available = containerRect.height - resizerRect.height;
+                return { containerRect: containerRect, available: available };
+            }
+
+            function applyTopPx(topPx) {
+                var s = getSizes();
+                var maxTop = Math.max(MIN_PX, s.available - MIN_PX);
+                var nextTop = clamp(topPx, MIN_PX, maxTop);
+                topPanel.style.flex = '0 0 ' + nextTop + 'px';
+                bottomPanel.style.flex = '1 1 auto';
+                resizer.setAttribute('aria-valuemin', String(MIN_PX));
+                resizer.setAttribute('aria-valuemax', String(maxTop));
+                resizer.setAttribute('aria-valuenow', String(Math.round(nextTop)));
+                try { localStorage.setItem(STORAGE_KEY, String(Math.round(nextTop))); } catch (e) { }
+            }
+
+            function restore() {
+                try {
+                    var saved = localStorage.getItem(STORAGE_KEY);
+                    if (saved) {
+                        var n = parseInt(saved, 10);
+                        if (!Number.isNaN(n)) applyTopPx(n);
+                        return;
+                    }
+                } catch (e) { }
+                var s = getSizes();
+                applyTopPx(Math.round(s.available * 0.55));
+            }
+
+            var dragging = false;
+            var startY = 0;
+            var startTop = 0;
+
+            function onPointerDown(e) {
+                dragging = true;
+                container.classList.add('is-resizing');
+                resizer.classList.add('is-dragging');
+                var topRect = topPanel.getBoundingClientRect();
+                startY = e.clientY;
+                startTop = topRect.height;
+                resizer.setPointerCapture(e.pointerId);
+            }
+            function onPointerMove(e) {
+                if (!dragging) return;
+                var delta = e.clientY - startY;
+                applyTopPx(startTop + delta);
+            }
+            function onPointerUp() {
+                dragging = false;
+                container.classList.remove('is-resizing');
+                resizer.classList.remove('is-dragging');
+            }
+
+            resizer.addEventListener('pointerdown', onPointerDown);
+            resizer.addEventListener('pointermove', onPointerMove);
+            resizer.addEventListener('pointerup', onPointerUp);
+            resizer.addEventListener('pointercancel', onPointerUp);
+
+            resizer.addEventListener('keydown', function (e) {
+                var step = e.shiftKey ? 40 : 20;
+                var now = parseInt(resizer.getAttribute('aria-valuenow') || '0', 10) || topPanel.getBoundingClientRect().height;
+                if (e.key === 'ArrowUp') { e.preventDefault(); applyTopPx(now - step); }
+                if (e.key === 'ArrowDown') { e.preventDefault(); applyTopPx(now + step); }
+                if (e.key === 'Home') { e.preventDefault(); applyTopPx(MIN_PX); }
+                if (e.key === 'End') {
+                    e.preventDefault();
+                    var s = getSizes();
+                    applyTopPx(Math.max(MIN_PX, s.available - MIN_PX));
+                }
+            });
+
+            window.addEventListener('resize', function () {
+                var current = topPanel.getBoundingClientRect().height;
+                applyTopPx(current);
+            });
+
+            restore();
+        })();
+    </script>
+    <script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+</body>
+
+</html>
+

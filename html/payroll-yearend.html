@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>연말정산내역 - 웅진프리드라이프</title>
+    <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <script src="lib/lucide/lucide.min.js"></script>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body class="dashboard-page">
+    <a href="#main-content" class="skip-link">본문 바로가기</a>
+    <div class="mobile-overlay" id="mobileOverlay" aria-hidden="true"></div>
+    <div id="sidebarMount"></div>
+
+    <div class="main-content">
+        <div id="headerMount"></div>
+
+        <main id="main-content" class="content-area payroll-page" aria-label="연말정산내역 본문">
+            <div class="container-fluid p-3 p-md-3 p-lg-4 d-flex flex-column min-h-0">
+                <nav aria-label="현재 위치">
+                    <ol class="breadcrumb mb-0">
+                        <li class="breadcrumb-item">
+                            <a href="dashboard.html">
+                                <i data-lucide="home" class="align-text-bottom icon-16" aria-hidden="true"></i>홈
+                            </a>
+                        </li>
+                        <li class="breadcrumb-item">급여관리</li>
+                        <li class="breadcrumb-item active" aria-current="page">연말정산내역</li>
+                    </ol>
+                </nav>
+
+                <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-2">
+                    <h1 class="h4 mb-0">연말정산내역</h1>
+                </div>
+
+                <section class="card table-grid-card payroll-yearend-card flex-grow-1 min-h-0" aria-labelledby="payrollYearendTableTitle">
+                    <h2 id="payrollYearendTableTitle" class="visually-hidden">연말정산 연도별 내역</h2>
+                    <div class="card-body table-grid-card-body">
+                        <div class="table-grid-scroll" role="region" aria-labelledby="payrollYearendTableTitle">
+                            <table class="table table-hover align-middle mb-0 table-grid-table payroll-yearend-table">
+                                <caption class="visually-hidden">연말정산 내역 목록</caption>
+                                <colgroup>
+                                    <col class="payroll-yearend-col-year">
+                                    <col>
+                                    <col>
+                                    <col>
+                                    <col>
+                                    <col class="payroll-yearend-col-print">
+                                </colgroup>
+                                <thead>
+                                    <tr>
+                                        <th scope="col" class="text-center">연도</th>
+                                        <th scope="col" class="text-center">근로소득금액</th>
+                                        <th scope="col" class="text-center">결정세액</th>
+                                        <th scope="col" class="text-center">기납부세액</th>
+                                        <th scope="col" class="text-center">정산세액</th>
+                                        <th scope="col" class="text-center">출력</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="text-center">2025</td>
+                                        <td class="text-center">12,000,000</td>
+                                        <td class="text-center">200,000</td>
+                                        <td class="text-center">200,000</td>
+                                        <td class="text-center">-200,000</td>
+                                        <td class="text-center">
+                                            <button type="button" class="btn btn-outline-secondary btn-sm payroll-print-btn"
+                                                aria-label="2025 연말정산 출력">
+                                                <i data-lucide="printer" class="icon-16" aria-hidden="true"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">2024</td>
+                                        <td class="text-center">11,450,000</td>
+                                        <td class="text-center">190,000</td>
+                                        <td class="text-center">190,000</td>
+                                        <td class="text-center">-190,000</td>
+                                        <td class="text-center">
+                                            <button type="button" class="btn btn-outline-secondary btn-sm payroll-print-btn"
+                                                aria-label="2024 연말정산 출력">
+                                                <i data-lucide="printer" class="icon-16" aria-hidden="true"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">2023</td>
+                                        <td class="text-center">10,980,000</td>
+                                        <td class="text-center">185,000</td>
+                                        <td class="text-center">185,000</td>
+                                        <td class="text-center">-185,000</td>
+                                        <td class="text-center">
+                                            <button type="button" class="btn btn-outline-secondary btn-sm payroll-print-btn"
+                                                aria-label="2023 연말정산 출력">
+                                                <i data-lucide="printer" class="icon-16" aria-hidden="true"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="js/layout-templates.js"></script>
+    <script src="js/nav-config.js"></script>
+    <script src="js/main.js"></script>
+    <script>lucide.createIcons();</script>
+    <script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+</body>
+
+</html>
+

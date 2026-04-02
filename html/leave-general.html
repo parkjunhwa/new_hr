@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>일반휴가 - 웅진프리드라이프</title>
+    <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="lib/datepicker/css/datepicker-bs5.min.css" rel="stylesheet">
+    <script src="lib/lucide/lucide.min.js"></script>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/datepicker-style.css">
+</head>
+
+<body class="dashboard-page">
+    <a href="#main-content" class="skip-link">본문 바로가기</a>
+    <div class="mobile-overlay" id="mobileOverlay" aria-hidden="true"></div>
+    <div id="sidebarMount"></div>
+
+    <div class="main-content">
+        <div id="headerMount"></div>
+
+        <main id="main-content" class="content-area leave-page" role="main" aria-label="일반휴가 본문">
+            <div class="container-fluid p-3 p-md-3 p-lg-4 d-flex flex-column min-h-0">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb mb-0">
+                        <li class="breadcrumb-item"><a href="dashboard.html"><i data-lucide="home" class="align-text-bottom icon-16"
+                                    aria-hidden="true"></i>홈</a></li>
+                        <li class="breadcrumb-item">휴가관리</li>
+                        <li class="breadcrumb-item active" aria-current="page">일반휴가</li>
+                    </ol>
+                </nav>
+
+                <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-2">
+                    <h1 class="h4 mb-0">일반휴가</h1>
+                    <div class="leave-action-tabs" role="group" aria-label="일반휴가 메뉴">
+                        <button type="button" class="leave-action-tab" aria-label="휴가사용신청">휴가사용신청</button>
+                        <button type="button" class="leave-action-tab" aria-label="연차변경신청">연차변경신청</button>
+                        <button type="button" class="leave-action-tab" aria-label="휴가불신청">휴가불신청</button>
+                        <button type="button" class="leave-action-tab" aria-label="휴가안내">휴가안내</button>
+                    </div>
+                </div>
+
+                <!-- 조회조건 카드 -->
+                <div class="card query-condition-card mb-3">
+                    <div class="card-body p-3">
+                        <div class="query-condition-form">
+                            <div class="query-condition-group">
+                                <label for="leaveQueryYear" class="form-label">조회년도</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="leaveQueryYear" value="2026" placeholder="YYYY"
+                                        readonly class="leave-year-input" aria-label="조회년도" autocomplete="off">
+                                    <span class="input-group-text bg-white" id="leaveQueryYearIcon" role="button" tabindex="0"
+                                        aria-label="조회년도 선택" title="년도 선택"><i data-lucide="calendar" class="text-muted icon-16"></i></span>
+                                </div>
+                            </div>
+
+                            <button type="button" class="btn btn-primary d-flex align-items-center gap-1 ms-auto"
+                                aria-label="검색">
+                                <i data-lucide="search" class="icon-16"></i>
+                                검색
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 하단(2개 카드) 리사이즈 영역 -->
+                <div class="leave-split flex-grow-1 min-h-0" id="leaveSplit">
+                    <!-- 상단 요약 테이블 -->
+                    <div class="card table-grid-card leave-split-top" id="leaveSplitTop">
+                        <div class="card-body table-grid-card-body">
+                            <div class="table-grid-scroll">
+                                <table class="table table-hover align-middle mb-0 table-grid-table">
+                                    <caption class="visually-hidden">휴가 유형별 발생/사용/잔여 현황</caption>
+                                    <colgroup>
+                                        <col style="width:18%;">
+                                        <col style="width:16%;">
+                                        <col style="width:16%;">
+                                        <col style="width:16%;">
+                                        <col>
+                                    </colgroup>
+                                    <thead>
+                                        <tr>
+                                            <th scope="col" class="text-center">유형</th>
+                                            <th scope="col" class="text-center">발생일수</th>
+                                            <th scope="col" class="text-center">사용일수</th>
+                                            <th scope="col" class="text-center">잔여일수</th>
+                                            <th scope="col" class="text-center">사용기간</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="leaveSummaryBody">
+                                        <tr class="leave-summary-active" data-leave-type="annual">
+                                            <td class="text-center">
+                                                <button type="button" class="leave-summary-btn" aria-pressed="true">
+                                                    <span class="leave-summary-label">연차</span>
+                                                    <span class="leave-summary-edit-icon" aria-hidden="true">
+                                                        <i data-lucide="pointer" class="icon-16"></i>
+                                                    </span>
+                                                </button>
+                                            </td>
+                                            <td class="text-center">7</td>
+                                            <td class="text-center">0</td>
+                                            <td class="text-center">7</td>
+                                            <td class="text-center">2026.01.01 ~ 2026.12.31</td>
+                                        </tr>
+                                        <tr data-leave-type="under1y">
+                                            <td class="text-center">
+                                                <button type="button" class="leave-summary-btn" aria-pressed="false">
+                                                    <span class="leave-summary-label">1년미만</span>
+                                                    <span class="leave-summary-edit-icon" aria-hidden="true">
+                                                        <i data-lucide="pointer" class="icon-16"></i>
+                                                    </span>
+                                                </button>
+                                            </td>
+                                            <td class="text-center">6</td>
+                                            <td class="text-center">5</td>
+                                            <td class="text-center">1</td>
+                                            <td class="text-center">2026.01.01 ~ 2026.12.31</td>
+                                        </tr>
+                                        <tr data-leave-type="regular">
+                                            <td class="text-center">
+                                                <button type="button" class="leave-summary-btn" aria-pressed="false">
+                                                    <span class="leave-summary-label">정기휴가</span>
+                                                    <span class="leave-summary-edit-icon" aria-hidden="true">
+                                                        <i data-lucide="pointer" class="icon-16"></i>
+                                                    </span>
+                                                </button>
+                                            </td>
+                                            <td class="text-center">4</td>
+                                            <td class="text-center">0</td>
+                                            <td class="text-center">4</td>
+                                            <td class="text-center">2026.01.01 ~ 2026.12.31</td>
+                                        </tr>
+                                        <!-- 데이터 없을 경우: d-none 제거 -->
+                                        <tr class="empty-state-row d-none">
+                                            <td colspan="5">
+                                                <div class="empty-state-block">
+                                                    <span class="empty-state-icon"><i data-lucide="inbox" aria-hidden="true"></i></span>
+                                                    <span class="empty-state-text">데이터가 없습니다</span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="button" class="leave-resize-handle" id="leaveResizeHandle" aria-label="테이블 영역 크기 조절"
+                        aria-controls="leaveSplitTop leaveSplitBottom">
+                        <span class="leave-resize-icon" aria-hidden="true">
+                            <i data-lucide="chevrons-up-down" class="icon-16"></i>
+                        </span>
+                    </button>
+
+                    <!-- 하단 사용내역 테이블 -->
+                    <div class="card table-grid-card leave-split-bottom flex-grow-1 min-h-0 d-flex flex-column" id="leaveSplitBottom">
+                        <div class="card-body table-grid-card-body">
+                            <div class="table-grid-scroll">
+                                <table class="table table-hover align-middle mb-0 table-grid-table">
+                                    <caption class="visually-hidden">휴가 사용 내역</caption>
+                                    <colgroup>
+                                        <col style="width:90px;">
+                                        <col>
+                                        <col>
+                                        <col>
+                                        <col>
+                                        <col>
+                                    </colgroup>
+                                    <thead>
+                                        <tr>
+                                            <th scope="col" class="text-center">No</th>
+                                            <th scope="col" class="text-center">휴가구분</th>
+                                            <th scope="col" class="text-center">시작일자</th>
+                                            <th scope="col" class="text-center">종료일자</th>
+                                            <th scope="col" class="text-center">사용일수</th>
+                                            <th scope="col" class="text-center">휴가사유</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="leaveUsageBody">
+                                        <tr>
+                                            <td class="text-center">6</td>
+                                            <td class="text-center">오전반차</td>
+                                            <td class="text-center">2026.03.02</td>
+                                            <td class="text-center">2026.03.02</td>
+                                            <td class="text-center">0.5</td>
+                                            <td class="text-center">개인사유</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center">5</td>
+                                            <td class="text-center">연차</td>
+                                            <td class="text-center">2026.02.19</td>
+                                            <td class="text-center">2026.02.19</td>
+                                            <td class="text-center">1</td>
+                                            <td class="text-center">개인사유</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center">4</td>
+                                            <td class="text-center">반반차(오후B 15,16,17시)</td>
+                                            <td class="text-center">2026.01.12</td>
+                                            <td class="text-center">2026.01.12</td>
+                                            <td class="text-center">0.25</td>
+                                            <td class="text-center">병원</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center">3</td>
+                                            <td class="text-center">오전반차</td>
+                                            <td class="text-center">2026.03.02</td>
+                                            <td class="text-center">2026.03.02</td>
+                                            <td class="text-center">0.5</td>
+                                            <td class="text-center">개인사유</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center">2</td>
+                                            <td class="text-center">연차</td>
+                                            <td class="text-center">2026.02.19</td>
+                                            <td class="text-center">2026.02.19</td>
+                                            <td class="text-center">1</td>
+                                            <td class="text-center">개인사유</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center">1</td>
+                                            <td class="text-center">반반차(오후B 15,16,17시)</td>
+                                            <td class="text-center">2026.01.12</td>
+                                            <td class="text-center">2026.01.12</td>
+                                            <td class="text-center">0.25</td>
+                                            <td class="text-center">병원</td>
+                                        </tr>
+                                        <!-- 데이터 없을 경우: d-none 제거 -->
+                                        <tr class="empty-state-row d-none">
+                                            <td colspan="6">
+                                                <div class="empty-state-block">
+                                                    <span class="empty-state-icon"><i data-lucide="inbox" aria-hidden="true"></i></span>
+                                                    <span class="empty-state-text">데이터가 없습니다</span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/datepicker/js/datepicker.min.js"></script>
+    <script src="js/layout-templates.js"></script>
+    <script src="js/nav-config.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        lucide.createIcons();
+
+        (function () {
+            var yearInput = document.getElementById('leaveQueryYear');
+            var yearIcon = document.getElementById('leaveQueryYearIcon');
+            if (typeof Datepicker !== 'undefined' && yearInput) {
+                if (!Datepicker.locales.ko) {
+                    Datepicker.locales.ko = {
+                        days: ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'],
+                        daysShort: ['일', '월', '화', '수', '목', '금', '토'],
+                        daysMin: ['일', '월', '화', '수', '목', '금', '토'],
+                        months: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+                        monthsShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+                        today: '오늘',
+                        clear: '지우기',
+                        weekStart: 0,
+                        format: 'yyyy-mm-dd',
+                        titleFormat: 'yyyy년 M'
+                    };
+                }
+                var picker = new Datepicker(yearInput, {
+                    format: 'yyyy',
+                    pickLevel: 2,
+                    autohide: true,
+                    language: 'ko'
+                });
+                function openPicker() { picker.show(); }
+                if (yearIcon) {
+                    yearIcon.addEventListener('click', openPicker);
+                    yearIcon.addEventListener('keydown', function (e) {
+                        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openPicker(); }
+                    });
+                }
+            }
+        })();
+
+        (function () {
+            var summaryBody = document.getElementById('leaveSummaryBody');
+            var usageBody = document.getElementById('leaveUsageBody');
+            if (!summaryBody || !usageBody) return;
+
+            var sampleByType = {
+                annual: [
+                    { no: 6, kind: '오전반차', start: '2026.03.02', end: '2026.03.02', days: '0.5', reason: '개인사유' },
+                    { no: 5, kind: '연차', start: '2026.02.19', end: '2026.02.19', days: '1', reason: '개인사유' },
+                    { no: 4, kind: '반반차(오후B 15,16,17시)', start: '2026.01.12', end: '2026.01.12', days: '0.25', reason: '병원' },
+                    { no: 3, kind: '오전반차', start: '2026.03.02', end: '2026.03.02', days: '0.5', reason: '개인사유' },
+                    { no: 2, kind: '연차', start: '2026.02.19', end: '2026.02.19', days: '1', reason: '개인사유' },
+                    { no: 1, kind: '반반차(오후B 15,16,17시)', start: '2026.01.12', end: '2026.01.12', days: '0.25', reason: '병원' }
+                ],
+                under1y: [
+                    { no: 4, kind: '1년미만(월차)', start: '2026.03.14', end: '2026.03.14', days: '1', reason: '개인사유' },
+                    { no: 3, kind: '1년미만(월차)', start: '2026.02.11', end: '2026.02.11', days: '1', reason: '가족행사' },
+                    { no: 2, kind: '1년미만(월차)', start: '2026.01.20', end: '2026.01.20', days: '1', reason: '병원' },
+                    { no: 1, kind: '오후반차', start: '2026.01.07', end: '2026.01.07', days: '0.5', reason: '개인사유' }
+                ],
+                regular: [
+                    { no: 2, kind: '정기휴가', start: '2026.07.25', end: '2026.07.28', days: '4', reason: '하계휴가' },
+                    { no: 1, kind: '정기휴가', start: '2026.05.16', end: '2026.05.16', days: '1', reason: '개인정비' }
+                ]
+            };
+
+            function escapeHtml(s) {
+                return String(s)
+                    .replace(/&/g, '&amp;')
+                    .replace(/</g, '&lt;')
+                    .replace(/>/g, '&gt;')
+                    .replace(/"/g, '&quot;')
+                    .replace(/'/g, '&#39;');
+            }
+
+            function renderUsageRows(type) {
+                var rows = sampleByType[type] || [];
+                if (!rows.length) {
+                    usageBody.innerHTML =
+                        '<tr class="empty-state-row">' +
+                        '<td colspan="6">' +
+                        '<div class="empty-state-block">' +
+                        '<span class="empty-state-icon"><i data-lucide="inbox" aria-hidden="true"></i></span>' +
+                        '<span class="empty-state-text">데이터가 없습니다</span>' +
+                        '</div>' +
+                        '</td>' +
+                        '</tr>';
+                    if (typeof lucide !== 'undefined') lucide.createIcons();
+                    return;
+                }
+
+                usageBody.innerHTML = rows.map(function (r) {
+                    return '<tr>' +
+                        '<td class="text-center">' + escapeHtml(r.no) + '</td>' +
+                        '<td class="text-center">' + escapeHtml(r.kind) + '</td>' +
+                        '<td class="text-center">' + escapeHtml(r.start) + '</td>' +
+                        '<td class="text-center">' + escapeHtml(r.end) + '</td>' +
+                        '<td class="text-center">' + escapeHtml(r.days) + '</td>' +
+                        '<td class="text-center">' + escapeHtml(r.reason) + '</td>' +
+                        '</tr>';
+                }).join('');
+            }
+
+            function selectSummaryRow(row) {
+                if (!row) return;
+                summaryBody.querySelectorAll('tr[data-leave-type]').forEach(function (tr) {
+                    tr.classList.remove('leave-summary-active');
+                    var btn = tr.querySelector('.leave-summary-btn');
+                    if (btn) btn.setAttribute('aria-pressed', 'false');
+                });
+                row.classList.add('leave-summary-active');
+                var activeBtn = row.querySelector('.leave-summary-btn');
+                if (activeBtn) activeBtn.setAttribute('aria-pressed', 'true');
+                var type = row.getAttribute('data-leave-type') || 'annual';
+                renderUsageRows(type);
+            }
+
+            summaryBody.addEventListener('click', function (e) {
+                var tr = e.target && e.target.closest ? e.target.closest('tr[data-leave-type]') : null;
+                if (!tr) return;
+                selectSummaryRow(tr);
+            });
+
+            // 초기 상태 동기화 (기본 active = 연차)
+            var initial = summaryBody.querySelector('tr.leave-summary-active[data-leave-type]') || summaryBody.querySelector('tr[data-leave-type]');
+            selectSummaryRow(initial);
+        })();
+
+        (function () {
+            var split = document.getElementById('leaveSplit');
+            var topEl = document.getElementById('leaveSplitTop');
+            var bottomEl = document.getElementById('leaveSplitBottom');
+            var handle = document.getElementById('leaveResizeHandle');
+            if (!split || !topEl || !bottomEl || !handle) return;
+
+            var STORAGE_KEY = 'leave-general.splitTopHeightPx';
+            var MIN_PX = 184;
+
+            function getMaxTopPx() {
+                var rect = split.getBoundingClientRect();
+                var handleRect = handle.getBoundingClientRect();
+                var available = rect.height - handleRect.height;
+                return Math.max(MIN_PX, available - MIN_PX);
+            }
+
+            function applyTopHeight(px) {
+                var maxPx = getMaxTopPx();
+                var next = Math.max(MIN_PX, Math.min(maxPx, px));
+                topEl.style.flex = '0 0 ' + next + 'px';
+                topEl.style.minHeight = MIN_PX + 'px';
+                bottomEl.style.minHeight = MIN_PX + 'px';
+                try { localStorage.setItem(STORAGE_KEY, String(next)); } catch (e) { }
+            }
+
+            // 초기 높이 적용(저장값 우선)
+            (function init() {
+                var saved = null;
+                try { saved = localStorage.getItem(STORAGE_KEY); } catch (e) { }
+                if (saved && !isNaN(parseFloat(saved))) {
+                    applyTopHeight(parseFloat(saved));
+                } else {
+                    // 기본값: 50:50
+                    var rect = split.getBoundingClientRect();
+                    applyTopHeight(rect.height * 0.5);
+                }
+            })();
+
+            var dragging = false;
+            var startY = 0;
+            var startTop = 0;
+
+            function onDown(e) {
+                dragging = true;
+                handle.classList.add('is-dragging');
+                var clientY = (e.touches && e.touches[0]) ? e.touches[0].clientY : e.clientY;
+                startY = clientY;
+                startTop = topEl.getBoundingClientRect().height;
+                document.body.classList.add('leave-resizing');
+                e.preventDefault();
+            }
+
+            function onMove(e) {
+                if (!dragging) return;
+                var clientY = (e.touches && e.touches[0]) ? e.touches[0].clientY : e.clientY;
+                var delta = clientY - startY;
+                applyTopHeight(startTop + delta);
+            }
+
+            function onUp() {
+                if (!dragging) return;
+                dragging = false;
+                handle.classList.remove('is-dragging');
+                document.body.classList.remove('leave-resizing');
+            }
+
+            handle.addEventListener('mousedown', onDown);
+            handle.addEventListener('touchstart', onDown, { passive: false });
+            window.addEventListener('mousemove', onMove);
+            window.addEventListener('touchmove', onMove, { passive: false });
+            window.addEventListener('mouseup', onUp);
+            window.addEventListener('touchend', onUp);
+
+            // 창 리사이즈 시 저장값 기준으로 재클램프
+            window.addEventListener('resize', function () {
+                var current = topEl.getBoundingClientRect().height;
+                applyTopHeight(current);
+            });
+        })();
+    </script>
+    <script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+</body>
+
+</html>

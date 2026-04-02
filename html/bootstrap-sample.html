@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>부트스트랩 예시1</title>
+    <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body class="dashboard-page">
+    <a href="#mainContent" class="skip-link">본문 바로가기</a>
+
+    <div id="sidebarMount"></div>
+    <div class="main-content">
+        <div id="headerMount"></div>
+        <main id="mainContent" class="content-area">
+            <div class="container-fluid py-3">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb mb-0">
+                        <li class="breadcrumb-item"><a href="dashboard.html"><i data-lucide="home" class="align-text-bottom" style="width: 1rem; height: 1rem;" aria-hidden="true"></i>홈</a></li>
+                        <li class="breadcrumb-item">메뉴 예시</li>
+                        <li class="breadcrumb-item active" aria-current="page">부트스트랩 예시1</li>
+                    </ol>
+                </nav>
+                <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-2">
+                    <h1 class="h4 mb-0">부트스트랩 예시1</h1>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h2 class="h5 mb-3">부트스트랩 컴포넌트 예시 모음</h2>
+                                <p class="text-muted mb-4">
+                                    Bootstrap 5 공식 문서의 주요 컴포넌트들을 한 화면에서 확인할 수 있도록 간단한 예시를 모았습니다.
+                                    (참고: [Bootstrap 5 문서](https://getbootstrap.com/docs/5.0/getting-started/introduction/))
+                                </p>
+
+                                <!-- Alerts / Accordion -->
+                                <section class="mb-4">
+                                    <h2 class="h6 mb-3">Alerts / Accordion</h2>
+                                    <div class="row g-3">
+                                        <div class="col-lg-6">
+                                            <div class="alert alert-primary alert-md alert-dismissible fade show" role="alert">
+                                                A simple primary alert—check it out!
+                                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                            </div>
+                                            <div class="alert alert-success alert-md alert-dismissible fade show" role="alert">
+                                                A simple success alert—check it out!
+                                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                            </div>
+                                            <div class="alert alert-warning alert-md alert-dismissible fade show" role="alert">
+                                                A simple warning alert—check it out!
+                                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                            </div>
+                                            <div class="alert alert-danger alert-md alert-dismissible fade show mb-0" role="alert">
+                                                A simple danger alert—check it out!
+                                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <!-- Collapse / Dropdowns -->
+                                <section class="mb-4">
+                                    <h2 class="h6 mb-3">Collapse / Dropdowns</h2>
+                                    <div class="row g-3">
+                                        <div class="col-lg-6">
+                                            <p>
+                                                <a class="btn btn-primary btn-sm" data-bs-toggle="collapse" href="#collapseExample" role="button"
+                                                   aria-expanded="false" aria-controls="collapseExample">
+                                                    Collapse 토글
+                                                </a>
+                                            </p>
+                                            <div class="collapse" id="collapseExample">
+                                                <div class="card card-body">
+                                                    Collapse 컴포넌트를 사용하면 영역을 펼치고 접을 수 있습니다.
+                                                </div>
+                                            </div>
+                                            <div class="dropdown">
+                                                <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton"
+                                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                                    Dropdown 버튼
+                                                </button>
+                                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                    <li><a class="dropdown-item" href="#">Action</a></li>
+                                                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <!-- Spinners / Tooltips / Toasts / Modal / Offcanvas -->
+                                <section class="mb-4">
+                                    <h2 class="h6 mb-3">Spinners / Tooltips / Toasts / Modal / Offcanvas</h2>
+                                    <div class="row g-3 align-items-center mb-3">
+                                        <div class="col-md-4 d-flex align-items-center gap-2">
+                                            <div class="spinner-border text-secondary" role="status" aria-hidden="true"></div>
+                                            <span>로딩 중…</span>
+                                        </div>
+                                        <div class="col-12">
+                                            <p class="small text-muted mb-2">전역 로딩(backdrop + 흰 박스) 열기·닫기 테스트</p>
+                                            <button type="button" class="btn btn-outline-primary btn-sm me-1" id="btnGlobalLoadingOpen">
+                                                전역 로딩 열기
+                                            </button>
+                                            <button type="button" class="btn btn-outline-secondary btn-sm" id="btnGlobalLoadingClose">
+                                                전역 로딩 닫기
+                                            </button>
+                                        </div>
+                                        <div class="col-12">
+                                            <button type="button" class="btn btn-outline-secondary btn-sm"
+                                                    data-bs-toggle="tooltip" data-bs-placement="top"
+                                                    title="툴팁 예시입니다.">
+                                                툴팁 버튼
+                                            </button>
+                                        </div>
+                                        <div class="col-12">
+                                            <button type="button" class="btn btn-outline-dark btn-sm" id="liveToastBtn">
+                                                토스트 띄우기
+                                            </button>
+                                            <button type="button" class="btn btn-outline-danger btn-sm" id="alertToastBtn">
+                                                얼럿 토스트
+                                            </button>
+                                            <button type="button" class="btn btn-primary btn-sm"
+                                                    data-bs-toggle="modal" data-bs-target="#modalSm">
+                                                작은 모달
+                                            </button>
+                                            <button type="button" class="btn btn-primary btn-sm"
+                                                    data-bs-toggle="modal" data-bs-target="#modalMd">
+                                                중간 모달
+                                            </button>
+                                            <button type="button" class="btn btn-primary btn-sm"
+                                                    data-bs-toggle="modal" data-bs-target="#modalLg">
+                                                큰 모달
+                                            </button>
+                                            <button type="button" class="btn btn-primary btn-sm"
+                                                    data-bs-toggle="modal" data-bs-target="#modalFullscreen">
+                                                전체화면 모달
+                                            </button>
+                                            <button class="btn btn-outline-dark btn-sm" type="button" data-bs-toggle="offcanvas"
+                                                    data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+                                                Offcanvas 열기
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <!-- Toast -->
+                                    <div class="position-fixed bottom-0 end-0 p-3 toast-stack" style="z-index: 1080">
+                                        <div id="liveToast" class="toast align-items-center text-bg-primary border-0"
+                                             role="alert" aria-live="assertive" aria-atomic="true">
+                                            <div class="d-flex">
+                                                <div class="toast-body">
+                                                    토스트 알림 예시입니다. 간단한 완료 메시지 등을 표시할 수 있습니다.
+                                                </div>
+                                                <button type="button" class="btn-close btn-close-white me-2 m-auto"
+                                                        data-bs-dismiss="toast" aria-label="Close"></button>
+                                            </div>
+                                        </div>
+                                        <!-- 얼럿 토스트 (경고/에러 스타일) -->
+                                        <div id="alertToast" class="toast align-items-center text-bg-warning border-0"
+                                             role="alert" aria-live="assertive" aria-atomic="true">
+                                            <div class="d-flex">
+                                                <div class="toast-body">
+                                                    <strong>경고</strong> — 오류나 주의가 필요한 경우 얼럿 토스트로 표시할 수 있습니다.
+                                                </div>
+                                                <button type="button" class="btn-close me-2 m-auto"
+                                                        data-bs-dismiss="toast" aria-label="Close"></button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Offcanvas -->
+                                    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample"
+                                         aria-labelledby="offcanvasExampleLabel">
+                                        <div class="offcanvas-header">
+                                            <h5 class="offcanvas-title" id="offcanvasExampleLabel">Offcanvas 예시</h5>
+                                            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                                        </div>
+                                        <div class="offcanvas-body">
+                                            <p class="mb-2">이 영역은 Offcanvas 컴포넌트 예시입니다.</p>
+                                            <p class="small text-muted mb-0">
+                                                화면 오른쪽에서 슬라이드되어 나타나는 패널로, 보조 메뉴나 상세 정보를 표시할 때 사용할 수 있습니다.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modals: 작은 / 중간 / 큰 / 전체화면 -->
+    <div class="modal fade" id="modalSm" tabindex="-1" aria-labelledby="modalSmLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalSmLabel">작은 모달</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    작은 크기의 모달 예시입니다. 간단한 확인용 메시지에 적합합니다.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">확인</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalMd" tabindex="-1" aria-labelledby="modalMdLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalMdLabel">중간 모달</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    기본 크기의 모달 예시입니다. 간단한 폼이나 안내 내용을 담을 수 있습니다.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">저장</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalLg" tabindex="-1" aria-labelledby="modalLgLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalLgLabel">큰 모달</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    큰 크기의 모달 예시입니다. 표나 상세 정보를 넉넉하게 보여줄 때 사용할 수 있습니다.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">확인</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalFullscreen" tabindex="-1" aria-labelledby="modalFullscreenLabel" aria-hidden="true">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalFullscreenLabel">전체화면 모달</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    전체 화면을 사용하는 모달 예시입니다. 복잡한 폼이나 대시보드를 임시로 전체 화면에 띄울 때 유용합니다.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">확인</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/lucide/lucide.min.js"></script>
+    <script src="js/layout-templates.js"></script>
+    <script src="js/nav-config.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        (function () {
+            if (!window.bootstrap) return;
+
+            // Toast
+            var toastTrigger = document.getElementById('liveToastBtn');
+            var toastElem = document.getElementById('liveToast');
+            if (toastTrigger && toastElem && bootstrap.Toast) {
+                var toast = new bootstrap.Toast(toastElem);
+                toastTrigger.addEventListener('click', function () {
+                    toast.show();
+                });
+            }
+            // 얼럿 토스트 (danger/에러 스타일)
+            var alertToastTrigger = document.getElementById('alertToastBtn');
+            var alertToastElem = document.getElementById('alertToast');
+            if (alertToastElem) {
+                // danger 컬러 적용
+                alertToastElem.classList.remove('text-bg-warning');
+                alertToastElem.classList.add('text-bg-danger');
+            }
+            if (alertToastTrigger && alertToastElem && bootstrap.Toast) {
+                var alertToast = new bootstrap.Toast(alertToastElem);
+                alertToastTrigger.addEventListener('click', function () {
+                    alertToast.show();
+                });
+            }
+
+            // Tooltips
+            if (bootstrap.Tooltip) {
+                var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+                tooltipTriggerList.forEach(function (tooltipTriggerEl) {
+                    new bootstrap.Tooltip(tooltipTriggerEl);
+                });
+            }
+
+            // 전역 로딩: modal-backdrop + 예시1과 동일한 스피너·문구(흰 라운드 박스)
+            (function () {
+                var backdropEl;
+                var shellEl;
+
+                function ensureGlobalLoading() {
+                    if (backdropEl) return;
+                    backdropEl = document.createElement('div');
+                    backdropEl.id = 'global-loading-backdrop';
+                    backdropEl.className = 'modal-backdrop fade d-none global-loading-backdrop';
+                    backdropEl.setAttribute('aria-hidden', 'true');
+
+                    shellEl = document.createElement('div');
+                    shellEl.id = 'global-loading-shell';
+                    shellEl.className = 'global-loading-shell';
+                    shellEl.setAttribute('role', 'dialog');
+                    shellEl.setAttribute('aria-modal', 'true');
+                    shellEl.setAttribute('aria-labelledby', 'global-loading-label');
+                    shellEl.setAttribute('aria-hidden', 'true');
+                    shellEl.innerHTML =
+                        '<div class="global-loading-box bg-white rounded-3 shadow px-4 py-4 text-center user-select-none">' +
+                        '<div class="d-flex align-items-center justify-content-center gap-2">' +
+                        '<div class="spinner-border text-secondary" role="status" aria-hidden="true"></div>' +
+                        '<span id="global-loading-label">로딩 중…</span>' +
+                        '</div>' +
+                        '<button type="button" class="btn btn-sm btn-outline-secondary" id="global-loading-close-btn">닫기</button>' +
+                        '</div>';
+
+                    document.body.appendChild(backdropEl);
+                    document.body.appendChild(shellEl);
+                    document.getElementById('global-loading-close-btn').addEventListener('click', loading_close);
+                }
+
+                function loading_open() {
+                    ensureGlobalLoading();
+                    shellEl.classList.add('is-open');
+                    backdropEl.classList.remove('d-none');
+                    void backdropEl.offsetHeight;
+                    backdropEl.classList.add('show');
+                    backdropEl.setAttribute('aria-hidden', 'false');
+                    shellEl.setAttribute('aria-hidden', 'false');
+                    document.body.style.overflow = 'hidden';
+                }
+
+                function loading_close() {
+                    if (!backdropEl || !shellEl) return;
+                    backdropEl.classList.remove('show');
+                    shellEl.classList.remove('is-open');
+                    document.body.style.overflow = '';
+                    shellEl.setAttribute('aria-hidden', 'true');
+                    backdropEl.setAttribute('aria-hidden', 'true');
+
+                    function hideBackdrop() {
+                        backdropEl.classList.add('d-none');
+                        backdropEl.removeEventListener('transitionend', hideBackdrop);
+                    }
+                    backdropEl.addEventListener('transitionend', hideBackdrop, { once: true });
+                    window.setTimeout(hideBackdrop, 200);
+                }
+
+                window.loading_open = loading_open;
+                window.loading_close = loading_close;
+
+                var openBtn = document.getElementById('btnGlobalLoadingOpen');
+                var closeBtn = document.getElementById('btnGlobalLoadingClose');
+                if (openBtn) openBtn.addEventListener('click', loading_open);
+                if (closeBtn) closeBtn.addEventListener('click', loading_close);
+            })();
+        })();
+    </script>
+    <script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+</body>
+</html>
+

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>근태관리 - 웅진프리드라이프</title>
+    <meta http-equiv="refresh" content="0; url=attendance-work-status.html">
+    <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <script src="lib/lucide/lucide.min.js"></script>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body class="dashboard-page">
+    <a href="#main-content" class="skip-link">본문 바로가기</a>
+    <div class="mobile-overlay" id="mobileOverlay" aria-hidden="true"></div>
+    <div id="sidebarMount"></div>
+
+    <div class="main-content">
+        <div id="headerMount"></div>
+
+        <main id="main-content" class="content-area" role="main" aria-label="근태관리 본문">
+            <div class="container-fluid p-3 p-md-3 p-lg-4">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb mb-0">
+                        <li class="breadcrumb-item"><a href="dashboard.html"><i data-lucide="home" class="align-text-bottom icon-16" aria-hidden="true"></i>홈</a></li>
+                        <li class="breadcrumb-item">근태관리</li>
+                        <li class="breadcrumb-item active" aria-current="page">근무현황</li>
+                    </ol>
+                </nav>
+                <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-2">
+                    <h1 class="h4 mb-0">근무현황</h1>
+                </div>
+                <div class="card hr-info-card">
+                    <div class="card-body p-3 p-md-4">
+                        <a class="btn btn-primary" href="attendance-work-status.html">근무현황으로 이동</a>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="js/layout-templates.js"></script>
+    <script src="js/nav-config.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        if (location.pathname && location.pathname.endsWith('attendance-manage.html')) {
+            location.replace('attendance-work-status.html');
+        }
+    </script>
+    <script>lucide.createIcons();</script>
+    <script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+</body>
+
+</html>

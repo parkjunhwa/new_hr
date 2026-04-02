@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>서약서/계약서 - 웅진프리드라이프</title>
+    <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="lib/datepicker/css/datepicker-bs5.min.css" rel="stylesheet">
+    <script src="lib/lucide/lucide.min.js"></script>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/datepicker-style.css">
+</head>
+
+<body class="dashboard-page">
+    <a href="#main-content" class="skip-link">본문 바로가기</a>
+    <div class="mobile-overlay" id="mobileOverlay" aria-hidden="true"></div>
+    <div id="sidebarMount"></div>
+
+    <div class="main-content">
+        <div id="headerMount"></div>
+
+        <main id="main-content" class="content-area doc-oath-page" role="main" aria-label="서약서/계약서 본문">
+            <div class="container-fluid p-3 p-md-3 p-lg-4 d-flex flex-column min-h-0">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb mb-0">
+                        <li class="breadcrumb-item"><a href="dashboard.html"><i data-lucide="home" class="align-text-bottom" style="width: 1rem; height: 1rem;" aria-hidden="true"></i>홈</a></li>
+                        <li class="breadcrumb-item">문서관리</li>
+                        <li class="breadcrumb-item active" aria-current="page">서약서/계약서</li>
+                    </ol>
+                </nav>
+
+                <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-2">
+                    <h1 class="h4 mb-0">서약서/계약서</h1>
+                </div>
+
+                <!-- 조회조건 카드 -->
+                <div class="card query-condition-card mb-3">
+                    <div class="card-body p-3">
+                        <div class="query-condition-form">
+                            <div class="query-condition-group">
+                                <label for="docType" class="form-label">문서종류</label>
+                                <select class="form-select" id="docType" style="min-width: 180px;">
+                                    <option value="">전체</option>
+                                    <option value="annual">연봉계약서</option>
+                                    <option value="security">보안서약서</option>
+                                    <option value="etc">기타</option>
+                                </select>
+                            </div>
+                            <div class="query-condition-group">
+                                <label for="queryYear" class="form-label">조회년도</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="queryYear" value="2026" placeholder="YYYY" readonly style="max-width: 100px;" aria-label="조회년도" autocomplete="off">
+                                    <span class="input-group-text bg-white" id="queryYearIcon" role="button" tabindex="0" aria-label="조회년도 선택" title="날짜 선택"><i data-lucide="calendar" class="text-muted" style="width: 1rem; height: 1rem;"></i></span>
+                                </div>
+                            </div>
+                            <button type="button" class="btn btn-primary d-flex align-items-center gap-1 query-condition-submit" id="btnSearch" aria-label="조회">
+                                <i data-lucide="search" style="width: 1rem; height: 1rem;"></i>
+                                조회
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 테이블 그리드 카드 -->
+                <div class="card table-grid-card flex-grow-1 min-h-0 d-flex flex-column">
+                    <div class="card-body table-grid-card-body">
+                        <div class="table-grid-scroll">
+                            <table class="table table-hover align-middle mb-0 table-grid-table">
+                                <colgroup>
+                                    <col>   <!-- 문서종류 -->
+                                    <col style="width: 10%;">   <!-- 계약시작일 -->
+                                    <col style="width: 10%;">   <!-- 계약종료일 -->
+                                    <col style="width: 10%;">   <!-- 서명여부 -->
+                                    <col style="width: 10%;">   <!-- 서명일자 -->
+                                    <col style="width: 10%;">   <!-- 계약(서약)서 확인 -->
+                                </colgroup>
+                                <thead>
+                                    <tr>
+                                        <th scope="col" class="text-center">문서종류</th>
+                                        <th scope="col" class="text-center">계약시작일</th>
+                                        <th scope="col" class="text-center">계약종료일</th>
+                                        <th scope="col" class="text-center">서명여부</th>
+                                        <th scope="col" class="text-center">서명일자</th>
+                                        <th scope="col" class="text-center">계약(서약)서 확인</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="text-center">연봉계약서</td>
+                                        <td class="text-center">2026.01.01</td>
+                                        <td class="text-center">2026.02.28</td>
+                                        <td class="text-center">Y</td>
+                                        <td class="text-center">2026.01.02</td>
+                                        <td class="text-center">
+                                            <div class="d-flex justify-content-center gap-1 flex-wrap">
+                                                <a href="#" class="btn btn-outline-primary btn-sm" target="_blank" rel="noopener noreferrer" aria-label="새 창에서 보기">보기</a>
+                                                <button type="button" class="btn btn-outline-secondary btn-sm btn-sign" data-bs-toggle="modal" data-bs-target="#signVerifyModal" aria-label="서명">서명</button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">연봉계약서</td>
+                                        <td class="text-center">2026.03.01</td>
+                                        <td class="text-center">2026.12.31</td>
+                                        <td class="text-center">N</td>
+                                        <td class="text-center">&nbsp;</td>
+                                        <td class="text-center">
+                                            <div class="d-flex justify-content-center gap-1 flex-wrap">
+                                                <a href="#" class="btn btn-outline-primary btn-sm" target="_blank" rel="noopener noreferrer" aria-label="새 창에서 보기">보기</a>
+                                                <button type="button" class="btn btn-outline-secondary btn-sm btn-sign" data-bs-toggle="modal" data-bs-target="#signVerifyModal" aria-label="서명">서명</button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">보안서약서</td>
+                                        <td class="text-center">2026.01.01</td>
+                                        <td class="text-center">2026.12.31</td>
+                                        <td class="text-center">Y</td>
+                                        <td class="text-center">2026.01.02</td>
+                                        <td class="text-center">
+                                            <div class="d-flex justify-content-center gap-1 flex-wrap">
+                                                <a href="#" class="btn btn-outline-primary btn-sm" target="_blank" rel="noopener noreferrer" aria-label="새 창에서 보기">보기</a>
+                                                <button type="button" class="btn btn-outline-secondary btn-sm btn-sign" data-bs-toggle="modal" data-bs-target="#signVerifyModal" aria-label="서명">서명</button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <!-- 데이터가 없을 경우 d-none을 뺀다. 6은 컬럼 수-->
+                                    <tr class="empty-state-row d-none">
+                                        <td colspan="6">
+                                            <div class="empty-state-block">
+                                                <span class="empty-state-icon"><i data-lucide="inbox" aria-hidden="true"></i></span>
+                                                <span class="empty-state-text">데이터가 없습니다</span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- 주민번호 확인 모달 (서명 버튼 클릭 시) -->
+    <div class="modal fade" id="signVerifyModal" tabindex="-1" aria-labelledby="signVerifyModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="signVerifyModalLabel">주민번호 확인</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="닫기"></button>
+                </div>
+                <div class="modal-body">
+                    <label for="signVerifyInput" class="form-label">주민번호 뒤 7자리</label>
+                    <input type="password" class="form-control" id="signVerifyInput" maxlength="7" inputmode="numeric" pattern="[0-9]*" autocomplete="off" placeholder="주민번호 뒤 7자리 입력" aria-label="주민번호 뒤 7자리">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="signVerifyConfirm">확인</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/datepicker/js/datepicker.min.js"></script>
+    <script src="js/layout-templates.js"></script>
+    <script src="js/nav-config.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        lucide.createIcons();
+
+        (function() {
+            var queryYearInput = document.getElementById('queryYear');
+            var queryYearIcon = document.getElementById('queryYearIcon');
+            if (typeof Datepicker !== 'undefined' && queryYearInput) {
+                if (!Datepicker.locales.ko) {
+                    Datepicker.locales.ko = {
+                        days: ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'],
+                        daysShort: ['일', '월', '화', '수', '목', '금', '토'],
+                        daysMin: ['일', '월', '화', '수', '목', '금', '토'],
+                        months: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+                        monthsShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+                        today: '오늘',
+                        clear: '지우기',
+                        weekStart: 0,
+                        format: 'yyyy-mm-dd',
+                        titleFormat: 'yyyy년 M'
+                    };
+                }
+                var queryYearPicker = new Datepicker(queryYearInput, {
+                    format: 'yyyy',
+                    pickLevel: 2,
+                    autohide: true,
+                    language: 'ko'
+                });
+                if (queryYearIcon) {
+                    function openPicker() { queryYearPicker.show(); }
+                    queryYearIcon.addEventListener('click', openPicker);
+                    queryYearIcon.addEventListener('keydown', function(e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openPicker(); } });
+                }
+            }
+
+            var signVerifyModal = document.getElementById('signVerifyModal');
+            var signVerifyInput = document.getElementById('signVerifyInput');
+            var signVerifyConfirm = document.getElementById('signVerifyConfirm');
+            if (signVerifyModal && signVerifyInput) {
+                signVerifyModal.addEventListener('hidden.bs.modal', function() {
+                    signVerifyInput.value = '';
+                });
+                if (signVerifyConfirm) {
+                    signVerifyConfirm.addEventListener('click', function() {
+                        var val = signVerifyInput.value.replace(/\D/g, '');
+                        if (val.length !== 7) {
+                            alert('주민번호 뒤 7자리를 입력해주세요.');
+                            return;
+                        }
+                        if (typeof bootstrap !== 'undefined' && bootstrap.Modal) {
+                            var modal = bootstrap.Modal.getInstance(signVerifyModal);
+                            if (modal) modal.hide();
+                        }
+                    });
+                }
+            }
+        })();
+    </script>
+    <script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+</body>
+
+</html>

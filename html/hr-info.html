@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>인사정보 - 웅진프리드라이프</title>
+
+    <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="lib/datepicker/css/datepicker-bs5.min.css" rel="stylesheet">
+    <script src="lib/lucide/lucide.min.js"></script>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/datepicker-style.css">
+</head>
+
+<body class="dashboard-page hr-info-page">
+    <a href="#main-content" class="skip-link">본문 바로가기</a>
+    <div class="mobile-overlay" id="mobileOverlay" aria-hidden="true"></div>
+    <div id="sidebarMount"></div>
+
+    <div class="main-content">
+        <div id="headerMount"></div>
+
+        <main id="main-content" class="content-area" role="main" aria-label="인사정보 본문">
+            <div class="container-fluid p-3 p-md-3 p-lg-4">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb mb-0">
+                        <li class="breadcrumb-item"><a href="dashboard.html"><i data-lucide="home" class="align-text-bottom" style="width: 1rem; height: 1rem;" aria-hidden="true"></i>홈</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">인사정보</li>
+                    </ol>
+                </nav>
+                <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-2">
+                    <h1 class="h4 mb-0">인사정보</h1>
+                    <div class="leave-action-tabs" role="group" aria-label="인사정보 메뉴">
+                        <button type="button" class="leave-action-tab"
+                            data-bs-toggle="modal" data-bs-target="#hrInfoChangeModal" aria-label="개인정보 변경 신청">
+                            <i data-lucide="pencil" class="icon-sm me-1" aria-hidden="true"></i>
+                            개인정보변경신청
+                        </button>
+                    </div>
+                </div>
+
+                <div class="card hr-info-card">
+                    <div class="card-body p-3 p-md-4">
+                        <nav class="hr-info-anchors mb-4" aria-label="인사정보 섹션 바로가기">
+                            <a href="#anchor-인사기본" class="hr-info-anchor-btn">인사기본</a>
+                            <a href="#anchor-추가정보" class="hr-info-anchor-btn">추가정보</a>
+                            <a href="#anchor-학력" class="hr-info-anchor-btn">학력</a>
+                            <a href="#anchor-자격" class="hr-info-anchor-btn">자격</a>
+                            <a href="#anchor-경력" class="hr-info-anchor-btn">경력</a>
+                            <a href="#anchor-발령" class="hr-info-anchor-btn">발령</a>
+                            <a href="#anchor-주소" class="hr-info-anchor-btn">주소</a>
+                            <a href="#anchor-가족" class="hr-info-anchor-btn">가족</a>
+                            <a href="#anchor-평가" class="hr-info-anchor-btn">평가</a>
+                        </nav>
+
+                        <div class="hr-info-scroll-area" id="hrInfoScrollArea">
+                            <section class="hr-info-section">
+                                <h2 id="anchor-인사기본" class="hr-info-section-title">인사기본</h2>
+                                <div class="hr-info-grid">
+                                    <div class="hr-info-grid-row">
+                                        <div class="hr-info-cell"><span class="hr-info-label">본부</span><span class="hr-info-value">ERP3사업본부</span></div>
+                                        <div class="hr-info-cell"><span class="hr-info-label">부서</span><span class="hr-info-value">웹솔루션사업팀</span></div>
+                                    </div>
+                                    <div class="hr-info-grid-row">
+                                        <div class="hr-info-cell"><span class="hr-info-label">직위</span><span class="hr-info-value">책임매니저</span></div>
+                                        <div class="hr-info-cell"><span class="hr-info-label">직급</span><span class="hr-info-value">2급</span></div>
+                                    </div>
+                                    <div class="hr-info-grid-row">
+                                        <div class="hr-info-cell"><span class="hr-info-label">입사일</span><span class="hr-info-value">2009.04.01</span></div>
+                                        <div class="hr-info-cell"><span class="hr-info-label">그룹입사일</span><span class="hr-info-value">2003.06.19</span></div>
+                                    </div>
+                                    <div class="hr-info-grid-row">
+                                        <div class="hr-info-cell"><span class="hr-info-label">근무유형</span><span class="hr-info-value">재량근무</span></div>
+                                        <div class="hr-info-cell"><span class="hr-info-label">재직상태/기간</span><span class="hr-info-value">재직 / 22년8개월</span></div>
+                                    </div>
+                                    <div class="hr-info-grid-row">
+                                        <div class="hr-info-cell"><span class="hr-info-label">직군/직렬</span><span class="hr-info-value">IT / S/W개발</span></div>
+                                        <div class="hr-info-cell"><span class="hr-info-label">직무/직책</span><span class="hr-info-value">시스템컨설팅 / 팀원</span></div>
+                                    </div>
+                                </div>
+                            </section>
+                            <section class="hr-info-section">
+                                <h2 id="anchor-추가정보" class="hr-info-section-title">추가정보</h2>
+                                <div class="hr-info-grid">
+                                    <div class="hr-info-grid-row">
+                                        <div class="hr-info-cell"><span class="hr-info-label">이메일</span><span class="hr-info-value">smurf@woongjin.co.kr</span></div>
+                                        <div class="hr-info-cell"><span class="hr-info-label">핸드폰번호</span><span class="hr-info-value">010-1234-5678</span></div>
+                                    </div>
+                                    <div class="hr-info-grid-row">
+                                        <div class="hr-info-cell"><span class="hr-info-label">비상연락망/관계</span><span class="hr-info-value">010-1234-5678 / 동생</span></div>
+                                        <div class="hr-info-cell"><span class="hr-info-label">혼인구분</span><span class="hr-info-value">미혼</span></div>
+                                    </div>
+                                    <div class="hr-info-grid-row">
+                                        <div class="hr-info-cell"><span class="hr-info-label">근무지역/층</span><span class="hr-info-value">종로타워 / 16층</span></div>
+                                        <div class="hr-info-cell"><span class="hr-info-label"></span><span class="hr-info-value"></span></div>
+                                    </div>
+                                </div>
+                            </section>
+                            <section class="hr-info-section">
+                                <h2 id="anchor-학력" class="hr-info-section-title">학력</h2>
+                                <div class="table-responsive hr-info-table-scroll hr-info-table-scroll-3">
+                                    <table class="table hr-info-table" aria-label="학력 목록">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">학력구분</th>
+                                                <th scope="col">입학년월</th>
+                                                <th scope="col">졸업년월</th>
+                                                <th scope="col">학교명</th>
+                                                <th scope="col">전공</th>
+                                                <th scope="col">부전공</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>대학교졸업</td>
+                                                <td>2021.03</td>
+                                                <td>2025.02</td>
+                                                <td>서울대학교</td>
+                                                <td>컴퓨터공학</td>
+                                                <td></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </section>
+
+                            <section class="hr-info-section">
+                                <h2 id="anchor-자격" class="hr-info-section-title">자격</h2>
+                                <div class="table-responsive hr-info-table-scroll hr-info-table-scroll-3">
+                                    <table class="table hr-info-table" aria-label="자격 목록">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">자격증</th>
+                                                <th scope="col">등급</th>
+                                                <th scope="col">자격번호</th>
+                                                <th scope="col">취득일</th>
+                                                <th scope="col">만료일</th>
+                                                <th scope="col">발행기관</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>정보처리기사</td>
+                                                <td>1급</td>
+                                                <td>3939393939</td>
+                                                <td>1996.06.21</td>
+                                                <td></td>
+                                                <td>한국산업인력관리공단</td>
+                                            </tr>
+                                            <tr>
+                                                <td>인터넷정보검색사</td>
+                                                <td>2급</td>
+                                                <td>KIDC-2000110801</td>
+                                                <td>2000.11.08</td>
+                                                <td></td>
+                                                <td>KIDC</td>
+                                            </tr>
+                                            <tr>
+                                                <td>회계관리</td>
+                                                <td>2급</td>
+                                                <td>343434434</td>
+                                                <td>2010.08.12</td>
+                                                <td></td>
+                                                <td>삼일회계법인</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </section>
+
+                            <section class="hr-info-section">
+                                <h2 id="anchor-경력" class="hr-info-section-title">경력</h2>
+                                <div class="table-responsive hr-info-table-scroll hr-info-table-scroll-3">
+                                    <table class="table hr-info-table" aria-label="경력 목록">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">시작일자</th>
+                                                <th scope="col">종료일자</th>
+                                                <th scope="col">회사</th>
+                                                <th scope="col">직위</th>
+                                                <th scope="col">직무</th>
+                                                <th scope="col">비고</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>1999.12.01</td>
+                                                <td>2003.01.31</td>
+                                                <td>솔로몬(주)</td>
+                                                <td>대리</td>
+                                                <td>Web 개발</td>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <td>2003.03.01</td>
+                                                <td>2009.03.31</td>
+                                                <td>구글</td>
+                                                <td>Senior Manager</td>
+                                                <td>기획</td>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <td>2009.05.02</td>
+                                                <td>2024.12.31</td>
+                                                <td>테슬라</td>
+                                                <td>Director</td>
+                                                <td>소셜마케팅</td>
+                                                <td></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </section>
+
+                            <section class="hr-info-section">
+                                <h2 id="anchor-발령" class="hr-info-section-title">발령</h2>
+                                <div class="table-responsive hr-info-table-scroll hr-info-table-scroll-5">
+                                    <table class="table hr-info-table" aria-label="발령 목록">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">발령일자</th>
+                                                <th scope="col">종료일자</th>
+                                                <th scope="col">발령명</th>
+                                                <th scope="col">사업부</th>
+                                                <th scope="col">부서명</th>
+                                                <th scope="col">직위</th>
+                                                <th scope="col">직책</th>
+                                                <th scope="col">직원유형</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>2025.01.02</td>
+                                                <td></td>
+                                                <td>채용-신규채용</td>
+                                                <td>ERP3본부</td>
+                                                <td>디지털플랫폼팀</td>
+                                                <td>책임매니저</td>
+                                                <td>팀원</td>
+                                                <td>종합일반직군(연봉)</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </section>
+
+                            <section class="hr-info-section">
+                                <h2 id="anchor-겸직" class="hr-info-section-title">겸직</h2>
+                                <div class="table-responsive hr-info-table-scroll hr-info-table-scroll-5">
+                                    <table class="table hr-info-table" aria-label="겸직 목록">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">발령일자</th>
+                                                <th scope="col">종료일자</th>
+                                                <th scope="col">발령명</th>
+                                                <th scope="col">사업부</th>
+                                                <th scope="col">부서명</th>
+                                                <th scope="col">직위</th>
+                                                <th scope="col">직책</th>
+                                                <th scope="col">직원유형</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>2026.01.02</td>
+                                                <td></td>
+                                                <td>겸직</td>
+                                                <td>ERP3본부</td>
+                                                <td>웹솔루션사업팀</td>
+                                                <td>책임매니저</td>
+                                                <td>팀장</td>
+                                                <td>종합일반직군(연봉)</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </section>
+
+                            <section class="hr-info-section">
+                                <h2 id="anchor-주소" class="hr-info-section-title">주소</h2>
+                                <div class="table-responsive">
+                                    <table class="table hr-info-table" aria-label="주소 목록">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">주소구분</th>
+                                                <th scope="col">우편번호</th>
+                                                <th scope="col">주소</th>
+                                                <th scope="col">상세주소</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>자택주소</td>
+                                                <td>16984</td>
+                                                <td>경기도 용인시 기흥구 영덕대로3길 11번길</td>
+                                                <td>101동 205호</td>
+                                            </tr>
+                                            <tr>
+                                                <td>임시주소</td>
+                                                <td>13394</td>
+                                                <td>서울특별시 광진구 자양로3길 14번길</td>
+                                                <td>302동 1203호</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </section>
+
+                            <section class="hr-info-section">
+                                <h2 id="anchor-가족" class="hr-info-section-title">가족</h2>
+                                <div class="table-responsive hr-info-table-scroll hr-info-table-scroll-5">
+                                    <table class="table hr-info-table" aria-label="가족 목록">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">관계</th>
+                                                <th scope="col">성명</th>
+                                                <th scope="col">주민번호</th>
+                                                <th scope="col">생년월일</th>
+                                                <th scope="col">부양가족여부</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>부</td>
+                                                <td>김한국</td>
+                                                <td>521111-1111111</td>
+                                                <td>1952.11.11</td>
+                                                <td>Y</td>
+                                            </tr>
+                                            <tr>
+                                                <td>모</td>
+                                                <td>김영희</td>
+                                                <td>541212-2334323</td>
+                                                <td>1954.12.12</td>
+                                                <td>Y</td>
+                                            </tr>
+                                            <tr>
+                                                <td>배우자</td>
+                                                <td>이주빈</td>
+                                                <td>870412-2331133</td>
+                                                <td>1987.04.12</td>
+                                                <td>Y</td>
+                                            </tr>
+                                            <tr>
+                                                <td>자녀</td>
+                                                <td>김보미</td>
+                                                <td>021123-2312310</td>
+                                                <td>2002.11.23</td>
+                                                <td>Y</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </section>
+
+                            <section class="hr-info-section">
+                                <h2 id="anchor-평가" class="hr-info-section-title">평가</h2>
+                                <div class="table-responsive hr-info-table-scroll hr-info-table-scroll-5">
+                                    <table class="table hr-info-table" aria-label="평가 목록">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">평가년도</th>
+                                                <th scope="col">역량</th>
+                                                <th scope="col">업적</th>
+                                                <th scope="col">종합등급</th>
+                                                <th scope="col">비고</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>2022</td>
+                                                <td></td>
+                                                <td>B</td>
+                                                <td>B</td>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <td>2023</td>
+                                                <td></td>
+                                                <td>B+</td>
+                                                <td>B+</td>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <td>2024</td>
+                                                <td></td>
+                                                <td>A</td>
+                                                <td>A</td>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <td>2025</td>
+                                                <td></td>
+                                                <td>A</td>
+                                                <td>A</td>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <td>2026</td>
+                                                <td></td>
+                                                <td>A</td>
+                                                <td>A</td>
+                                                <td>비고란 입니다.</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </section>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div class="modal fade" id="hrInfoChangeModal" tabindex="-1" aria-labelledby="hrInfoChangeModalLabel" aria-describedby="hrInfoChangeModalBody" aria-modal="true" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="hrInfoChangeModalLabel">개인신상정보 변경요청</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="모달 닫기"></button>
+                </div>
+                <div class="modal-body" id="hrInfoChangeModalBody">
+                    <form id="hrInfoChangeForm">
+                        <nav class="hr-info-anchors mb-3" aria-label="변경 구분">
+                            <a href="#modal-anchor-주소" class="hr-info-anchor-btn modal-change-anchor">주소</a>
+                            <a href="#modal-anchor-연락처" class="hr-info-anchor-btn modal-change-anchor">연락처</a>
+                            <a href="#modal-anchor-가족사항" class="hr-info-anchor-btn modal-change-anchor">가족사항</a>
+                            <a href="#modal-anchor-급여계좌" class="hr-info-anchor-btn modal-change-anchor">급여계좌</a>
+                        </nav>
+                        <div id="hrInfoChangeModalScrollArea" class="hr-info-change-modal-scroll">
+                            <section id="modal-anchor-주소" class="hr-info-change-section">
+                                <h2 class="hr-info-change-section-title">주소</h2>
+                                <div id="hrInfoForm주소" class="hr-info-change-form-panel">
+                                    <table class="table hr-info-form-table">
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row"><label for="hrInfoZipcode">우편번호</label></th>
+                                                <td>
+                                                    <div class="input-group input-group-sm">
+                                                        <input type="text" class="form-control form-control-sm" id="hrInfoZipcode" value="19534" placeholder="우편번호" aria-label="우편번호">
+                                                        <button type="button" class="btn btn-outline-secondary" id="hrInfoZipcodeSearchBtn" aria-label="우편번호 검색">
+                                                            <i data-lucide="search" class="icon-sm" aria-hidden="true"></i>
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row"><label for="hrInfoAddress">주소</label></th>
+                                                <td><input type="text" class="form-control form-control-sm" id="hrInfoAddress" value="서울특별시 광진구 자양로3길 14" placeholder="주소" aria-label="주소"></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row"><label for="hrInfoAddressDetail">상세주소</label></th>
+                                                <td><input type="text" class="form-control form-control-sm" id="hrInfoAddressDetail" value="202동 1035호" placeholder="상세주소" aria-label="상세주소"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </section>
+                            <section id="modal-anchor-연락처" class="hr-info-change-section">
+                                <h2 class="hr-info-change-section-title">연락처</h2>
+                                <div id="hrInfoForm연락처" class="hr-info-change-form-panel">
+                                    <table class="table hr-info-form-table">
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row"><label for="hrInfoContactValue">개인연락처</label></th>
+                                                <td><input type="text" class="form-control form-control-sm" id="hrInfoContactValue" placeholder="개인연락처 입력" aria-label="개인연락처"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </section>
+                            <section id="modal-anchor-가족사항" class="hr-info-change-section">
+                                <h2 class="hr-info-change-section-title">가족사항</h2>
+                                <div id="hrInfoForm가족사항" class="hr-info-change-form-panel">
+                                    <table class="table hr-info-form-table">
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row"><label for="hrInfoFamilyRelation">관계</label></th>
+                                                <td>
+                                                    <select class="form-select form-select-sm" id="hrInfoFamilyRelation" aria-label="관계 선택">
+                                                        <option value="">선택</option>
+                                                        <option value="부">부</option>
+                                                        <option value="모">모</option>
+                                                        <option value="배우자">배우자</option>
+                                                        <option value="자녀">자녀</option>
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row"><label for="hrInfoFamilyProcess">처리구분</label></th>
+                                                <td>
+                                                    <select class="form-select form-select-sm" id="hrInfoFamilyProcess" aria-label="처리구분">
+                                                        <option value="신규" selected>신규</option>
+                                                        <option value="변경">변경</option>
+                                                        <option value="삭제">삭제</option>
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row"><label for="hrInfoFamilyBirth">생년월일</label></th>
+                                                <td>
+                                                    <div class="input-group input-group-sm">
+                                                        <input type="text" class="form-control form-control-sm" id="hrInfoFamilyBirth" value="2026-03-13" placeholder="YYYY-MM-DD" aria-label="생년월일" autocomplete="off">
+                                                        <button type="button" class="btn btn-outline-secondary" id="hrInfoFamilyBirthBtn" aria-label="날짜 선택"><i data-lucide="calendar" class="icon-sm" aria-hidden="true"></i></button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row"><label for="hrInfoFamilyName">성명</label></th>
+                                                <td><input type="text" class="form-control form-control-sm" id="hrInfoFamilyName" placeholder="성명" aria-label="성명"></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">동거여부</th>
+                                                <td>
+                                                    <div class="form-check">
+                                                        <input type="checkbox" class="form-check-input" id="hrInfoFamilyCohabitation" aria-label="동거여부">
+                                                        <label class="form-check-label" for="hrInfoFamilyCohabitation">동거여부</label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </section>
+                            <section id="modal-anchor-급여계좌" class="hr-info-change-section">
+                                <h2 class="hr-info-change-section-title">급여계좌</h2>
+                                <div id="hrInfoForm급여계좌" class="hr-info-change-form-panel">
+                                    <table class="table hr-info-form-table">
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row">현 은행명</th>
+                                                <td><input type="text" class="form-control form-control-sm" value="신한은행" readonly aria-label="현 은행명"></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">현 계좌번호</th>
+                                                <td><input type="text" class="form-control form-control-sm" value="110337206347" readonly aria-label="현 계좌번호"></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row"><label for="hrInfoBankSelect">은행</label></th>
+                                                <td>
+                                                    <select class="form-select form-select-sm" id="hrInfoBankSelect" aria-label="은행 선택">
+                                                        <option value="">은행선택</option>
+                                                        <option value="신한은행">신한은행</option>
+                                                        <option value="국민은행">국민은행</option>
+                                                        <option value="우리은행">우리은행</option>
+                                                        <option value="하나은행">하나은행</option>
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row"><label for="hrInfoAccountNumber">계좌번호</label></th>
+                                                <td><input type="text" class="form-control form-control-sm" id="hrInfoAccountNumber" placeholder="계좌번호" aria-label="계좌번호"></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row"><label for="hrInfoAccountHolder">예금주</label></th>
+                                                <td><input type="text" class="form-control form-control-sm" id="hrInfoAccountHolder" placeholder="예금주" aria-label="예금주"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </section>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal" aria-label="변경요청 취소하고 모달 닫기">닫기</button>
+                    <button type="button" class="btn btn-primary" id="hrInfoChangeSubmit" aria-label="개인신상정보 변경요청 신청">신청</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="zipcodeSearchModal" tabindex="-1" aria-labelledby="zipcodeSearchModalLabel" aria-describedby="zipcodeSearchModalBody" aria-modal="true" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl zipcode-modal-wide">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="zipcodeSearchModalLabel">우편번호 검색</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="모달 닫기"></button>
+                </div>
+                <div class="modal-body" id="zipcodeSearchModalBody">
+                    <div class="mb-3">
+                        <label for="zipcodeSearchKeyword" class="form-label">검색어</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="zipcodeSearchKeyword" placeholder="동/읍/면, 도로명, 지번 입력" aria-label="주소 검색어" autocomplete="off">
+                            <button type="button" class="btn btn-primary" id="zipcodeSearchSubmit" aria-label="우편번호 검색 실행">검색</button>
+                        </div>
+                    </div>
+                    <div class="mb-0">
+                        <label class="form-label" id="zipcodeSearchResultLabel">검색 결과</label>
+                        <div class="table-responsive hr-info-table-scroll hr-info-table-scroll-5">
+                            <table class="table hr-info-table zipcode-result-table mb-0" aria-label="우편번호 검색 결과">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">우편번호</th>
+                                        <th scope="col">도로명주소</th>
+                                        <th scope="col">지번주소</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="zipcodeSearchResultBody">
+                                    <tr>
+                                        <td>06134</td>
+                                        <td>서울 강남구 테헤란로 152</td>
+                                        <td>서울 강남구 역삼동 737</td>
+                                    </tr>
+                                    <tr>
+                                        <td>04524</td>
+                                        <td>서울 중구 세종대로 110</td>
+                                        <td>서울 중구 태평로1가 31</td>
+                                    </tr>
+                                    <tr>
+                                        <td>08394</td>
+                                        <td>경기 부천시 원미구 중동로 123</td>
+                                        <td>경기 부천시 원미구 중동 1234</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal" aria-label="우편번호 검색 모달 닫기">닫기</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/datepicker/js/datepicker.min.js"></script>
+    <script src="js/layout-templates.js"></script>
+    <script src="js/nav-config.js"></script>
+    <script src="js/main.js"></script>
+
+    <script>
+        lucide.createIcons();
+
+        if (typeof Datepicker !== 'undefined' && !Datepicker.locales.ko) {
+            Datepicker.locales.ko = {
+                days: ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'],
+                daysShort: ['일', '월', '화', '수', '목', '금', '토'],
+                daysMin: ['일', '월', '화', '수', '목', '금', '토'],
+                months: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+                monthsShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+                today: '오늘',
+                clear: '지우기',
+                weekStart: 0,
+                format: 'yyyy-mm-dd',
+                titleFormat: 'yyyy년 M'
+            };
+        }
+
+        var hrInfoChangeModal = document.getElementById('hrInfoChangeModal');
+        var hrInfoChangeModalScroll = document.getElementById('hrInfoChangeModalScrollArea');
+        var hrInfoFamilyBirthPicker = null;
+        var hrInfoFamilyBirthPickerInited = false;
+        // 클릭(프로그램 스크롤) 직후 scroll 이벤트가 active를 덮어쓰는 것을 방지
+        var suppressHrInfoScrollSyncUntil = 0;
+        var suppressHrInfoModalScrollSyncUntil = 0;
+
+        if (hrInfoChangeModal) {
+            hrInfoChangeModal.addEventListener('shown.bs.modal', function() {
+                lucide.createIcons();
+                if (hrInfoChangeModalScroll) hrInfoChangeModalScroll.scrollTop = 0;
+                var birthInput = document.getElementById('hrInfoFamilyBirth');
+                var birthBtn = document.getElementById('hrInfoFamilyBirthBtn');
+                if (typeof Datepicker !== 'undefined' && birthInput && !hrInfoFamilyBirthPickerInited) {
+                    hrInfoFamilyBirthPicker = new Datepicker(birthInput, {
+                        format: 'yyyy-mm-dd',
+                        autohide: true,
+                        language: 'ko'
+                    });
+                    hrInfoFamilyBirthPickerInited = true;
+                    if (birthBtn) birthBtn.addEventListener('click', function() { hrInfoFamilyBirthPicker.show(); });
+                }
+                document.querySelectorAll('#hrInfoChangeModal .modal-change-anchor').forEach(function(btn) {
+                    var isActive = btn.getAttribute('href') === '#modal-anchor-주소';
+                    btn.classList.toggle('active', isActive);
+                    btn.setAttribute('aria-current', isActive ? 'true' : null);
+                });
+                document.querySelectorAll('#hrInfoChangeModal .hr-info-change-section-title').forEach(function(title) {
+                    title.classList.toggle('active', title.closest('section').id === 'modal-anchor-주소');
+                });
+            });
+        }
+        function setModalChangeActive(sectionId) {
+            document.querySelectorAll('#hrInfoChangeModal .modal-change-anchor').forEach(function(b) {
+                var isActive = b.getAttribute('href') === '#' + sectionId;
+                b.classList.toggle('active', isActive);
+                b.setAttribute('aria-current', isActive ? 'true' : null);
+            });
+            document.querySelectorAll('#hrInfoChangeModal .hr-info-change-section-title').forEach(function(title) {
+                title.classList.toggle('active', title.closest('section').id === sectionId);
+            });
+        }
+        document.querySelectorAll('#hrInfoChangeModal .modal-change-anchor').forEach(function(btn) {
+            btn.addEventListener('click', function(e) {
+                var href = this.getAttribute('href');
+                if (!href || href.charAt(0) !== '#') return;
+                var id = href.slice(1);
+                var section = document.getElementById(id);
+                if (!section || !hrInfoChangeModalScroll) return;
+                e.preventDefault();
+                var areaRect = hrInfoChangeModalScroll.getBoundingClientRect();
+                var sectionRect = section.getBoundingClientRect();
+                var scrollTop = hrInfoChangeModalScroll.scrollTop + (sectionRect.top - areaRect.top) - 8;
+                suppressHrInfoModalScrollSyncUntil = Date.now() + 600;
+                hrInfoChangeModalScroll.scrollTo({ top: Math.max(0, scrollTop), behavior: 'smooth' });
+                setModalChangeActive(id);
+            });
+        });
+
+        // 우편번호 돋보기: 기존 모달은 그대로 두고, 우편번호 검색 모달만 그 위에 추가로 열기
+        var zipcodeSearchBtn = document.getElementById('hrInfoZipcodeSearchBtn');
+        var zipcodeSearchModalEl = document.getElementById('zipcodeSearchModal');
+        if (zipcodeSearchBtn && zipcodeSearchModalEl && typeof bootstrap !== 'undefined') {
+            zipcodeSearchBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                var zipModal = bootstrap.Modal.getOrCreateInstance(zipcodeSearchModalEl);
+                zipModal.show();
+            });
+        }
+
+        // 모달 위에 모달 열릴 때 쌓임 순서: dim → 모달 → dim → 모달 (모달이 dim 아래 가려지지 않도록)
+        function applyModalStackOrder() {
+            var backdrops = Array.from(document.querySelectorAll('.modal-backdrop'));
+            var firstModal = document.getElementById('hrInfoChangeModal');
+            var secondModal = document.getElementById('zipcodeSearchModal');
+            var ordered = [];
+            if (backdrops.length >= 1) ordered.push(backdrops[0]);
+            if (firstModal && firstModal.classList.contains('show')) ordered.push(firstModal);
+            if (backdrops.length >= 2) ordered.push(backdrops[1]);
+            if (secondModal && secondModal.classList.contains('show')) ordered.push(secondModal);
+            var z = 1050;
+            ordered.forEach(function(el) {
+                el.style.zIndex = String(z);
+                z += 5;
+            });
+        }
+        function clearModalStackOrder() {
+            document.querySelectorAll('.modal-backdrop, .modal').forEach(function(el) {
+                el.style.zIndex = '';
+            });
+        }
+        if (zipcodeSearchModalEl) {
+            zipcodeSearchModalEl.addEventListener('shown.bs.modal', applyModalStackOrder);
+            zipcodeSearchModalEl.addEventListener('hidden.bs.modal', function() {
+                clearModalStackOrder();
+                if (document.querySelector('.modal.show')) applyModalStackOrder();
+            });
+        }
+        if (hrInfoChangeModal) {
+            hrInfoChangeModal.addEventListener('shown.bs.modal', function() {
+                if (document.querySelector('#zipcodeSearchModal.show')) applyModalStackOrder();
+                else clearModalStackOrder();
+            });
+        }
+
+        var scrollArea = document.getElementById('hrInfoScrollArea');
+        var anchorIds = ['anchor-인사기본', 'anchor-추가정보', 'anchor-학력', 'anchor-자격', 'anchor-경력', 'anchor-발령', 'anchor-겸직', 'anchor-주소', 'anchor-가족', 'anchor-평가'];
+
+        // 앵커 클릭 시 스크롤 영역 내에서 해당 제목이 상단에 오도록 스크롤 (모달 내 앵커 제외)
+        document.querySelectorAll('.hr-info-anchor-btn').forEach(function(btn) {
+            btn.addEventListener('click', function(e) {
+                if (this.closest('#hrInfoChangeModal')) return;
+                var href = this.getAttribute('href');
+                if (!href || href.charAt(0) !== '#') return;
+                var id = href.slice(1);
+                var titleEl = document.getElementById(id);
+                if (!titleEl || !scrollArea) return;
+                e.preventDefault();
+                var areaRect = scrollArea.getBoundingClientRect();
+                var titleRect = titleEl.getBoundingClientRect();
+                var scrollTop = scrollArea.scrollTop + (titleRect.top - areaRect.top) - 8;
+                suppressHrInfoScrollSyncUntil = Date.now() + 600;
+                scrollArea.scrollTo({ top: Math.max(0, scrollTop), behavior: 'smooth' });
+                setActiveAnchor(id);
+            });
+        });
+
+        function setActiveAnchor(activeId) {
+            var is발령Area = (activeId === 'anchor-발령' || activeId === 'anchor-겸직');
+            document.querySelectorAll('.hr-info-anchor-btn').forEach(function(btn) {
+                if (btn.closest('#hrInfoChangeModal')) return;
+                var href = btn.getAttribute('href');
+                var id = href && href.charAt(0) === '#' ? href.slice(1) : '';
+                var btnActive = (id === activeId) || (id === 'anchor-발령' && activeId === 'anchor-겸직');
+                btn.classList.toggle('active', btnActive);
+                btn.setAttribute('aria-current', btnActive ? 'true' : null);
+            });
+            document.querySelectorAll('.hr-info-section-title').forEach(function(title) {
+                var titleActive = (title.id === activeId) || (is발령Area && (title.id === 'anchor-발령' || title.id === 'anchor-겸직'));
+                title.classList.toggle('active', titleActive);
+            });
+        }
+
+        // 스크롤 시 보이는 섹션에 맞춰 앵커 활성 표시 (인사정보 페이지)
+        if (scrollArea) {
+            scrollArea.addEventListener('scroll', function() {
+                if (Date.now() < suppressHrInfoScrollSyncUntil) return;
+                var areaTop = scrollArea.getBoundingClientRect().top;
+                var currentId = null;
+                anchorIds.forEach(function(id) {
+                    var el = document.getElementById(id);
+                    if (el && el.getBoundingClientRect().top <= areaTop + 40) currentId = id;
+                });
+                if (currentId) setActiveAnchor(currentId);
+            });
+            setActiveAnchor(anchorIds[0]);
+        }
+
+        // 개인신상정보 변경요청 모달: 스크롤 시 보이는 섹션에 맞춰 앵커·라벨 활성 표시
+        var modalAnchorIds = ['modal-anchor-주소', 'modal-anchor-연락처', 'modal-anchor-가족사항', 'modal-anchor-급여계좌'];
+        if (hrInfoChangeModalScroll) {
+            hrInfoChangeModalScroll.addEventListener('scroll', function() {
+                if (Date.now() < suppressHrInfoModalScrollSyncUntil) return;
+                var areaTop = hrInfoChangeModalScroll.getBoundingClientRect().top;
+                var currentId = null;
+                modalAnchorIds.forEach(function(id) {
+                    var el = document.getElementById(id);
+                    if (el && el.getBoundingClientRect().top <= areaTop + 40) currentId = id;
+                });
+                if (currentId) setModalChangeActive(currentId);
+            });
+        }
+    </script>
+    <script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+</body>
+
+</html>

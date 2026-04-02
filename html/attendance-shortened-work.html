@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>단축근로 - 웅진프리드라이프</title>
+    <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <script src="lib/lucide/lucide.min.js"></script>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body class="dashboard-page">
+    <a href="#main-content" class="skip-link">본문 바로가기</a>
+    <div class="mobile-overlay" id="mobileOverlay" aria-hidden="true"></div>
+    <div id="sidebarMount"></div>
+
+    <div class="main-content">
+        <div id="headerMount"></div>
+
+        <main id="main-content" class="content-area" aria-label="단축근로 본문">
+            <div class="container-fluid p-3 p-md-3 p-lg-4 d-flex flex-column min-h-0">
+                <nav aria-label="현재 위치">
+                    <ol class="breadcrumb mb-0">
+                        <li class="breadcrumb-item">
+                            <a href="dashboard.html">
+                                <i data-lucide="home" class="align-text-bottom icon-16" aria-hidden="true"></i>홈
+                            </a>
+                        </li>
+                        <li class="breadcrumb-item">근태관리</li>
+                        <li class="breadcrumb-item active" aria-current="page">단축근로</li>
+                    </ol>
+                </nav>
+
+                <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-2">
+                    <h1 class="h4 mb-0">단축근로</h1>
+                    <div class="leave-action-tabs" role="group" aria-label="단축근로 신청 메뉴">
+                        <button type="button" class="leave-action-tab" aria-label="임신기간단축신청">임신기간단축신청</button>
+                        <button type="button" class="leave-action-tab" aria-label="육아기간단축신청">육아기간단축신청</button>
+                        <button type="button" class="leave-action-tab" aria-label="가족돌봄단축신청">가족돌봄단축신청</button>
+                    </div>
+                </div>
+
+                <section class="card table-grid-card flex-grow-1 min-h-0" aria-labelledby="shortenedWorkTableTitle">
+                    <h2 id="shortenedWorkTableTitle" class="visually-hidden">단축근로 신청·사용 내역</h2>
+                    <div class="card-body table-grid-card-body">
+                        <div class="table-grid-scroll" role="region" aria-labelledby="shortenedWorkTableTitle">
+                            <table class="table table-hover align-middle mb-0 table-grid-table">
+                                <caption class="visually-hidden">단축근로 신청/사용 현황</caption>
+                                <colgroup>
+                                    <col style="width:100px;">
+                                    <col>
+                                    <col>
+                                    <col>
+                                    <col>
+                                    <col>
+                                    <col>
+                                    <col>
+                                    <col style="width:120px;">
+                                </colgroup>
+                                <thead>
+                                    <tr>
+                                        <th scope="col" class="text-center">No</th>
+                                        <th scope="col" class="text-center">단축근로구분</th>
+                                        <th scope="col" class="text-center">사용기간</th>
+                                        <th scope="col" class="text-center">사용일수</th>
+                                        <th scope="col" class="text-center">단축근로유형</th>
+                                        <th scope="col" class="text-center">단축 전</th>
+                                        <th scope="col" class="text-center">단축 후</th>
+                                        <th scope="col" class="text-center">성명</th>
+                                        <th scope="col" class="text-center">생년월일</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="text-center">3</td>
+                                        <td class="text-center">임신기</td>
+                                        <td class="text-center">2018.07.31 ~ 2018.8.31</td>
+                                        <td class="text-center">32</td>
+                                        <td class="text-center">09:00 ~ 16:00</td>
+                                        <td class="text-center">209</td>
+                                        <td class="text-center">157</td>
+                                        <td class="text-center"></td>
+                                        <td class="text-center"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">2</td>
+                                        <td class="text-center">육아기</td>
+                                        <td class="text-center">2026.03.01 ~ 2026.03.31</td>
+                                        <td class="text-center">31</td>
+                                        <td class="text-center">1일 근로시간 단축형</td>
+                                        <td class="text-center"></td>
+                                        <td class="text-center"></td>
+                                        <td class="text-center">홍길동</td>
+                                        <td class="text-center">2019.03.04</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">1</td>
+                                        <td class="text-center">육아기</td>
+                                        <td class="text-center">2026.03.01 ~ 2026.03.31</td>
+                                        <td class="text-center">31</td>
+                                        <td class="text-center">1일 근로시간 단축형</td>
+                                        <td class="text-center"></td>
+                                        <td class="text-center"></td>
+                                        <td class="text-center">홍길동</td>
+                                        <td class="text-center">2019.03.04</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="js/layout-templates.js"></script>
+    <script src="js/nav-config.js"></script>
+    <script src="js/main.js"></script>
+    <script>lucide.createIcons();</script>
+    <script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+</body>
+
+</html>
+
